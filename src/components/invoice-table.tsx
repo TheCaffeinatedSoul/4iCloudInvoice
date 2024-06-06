@@ -15,7 +15,7 @@ import { Toggle } from "./ui/toggle";
 
 const InvoiceTable = () => {
   return (
-    <Card className="flex flex-col p-4 m-2">
+    <Card className="grid p-4 m-2">
       <Input type="search" placeholder="Search ..." />
       <div className="flex items-center py-2 gap-2">
         <div className="text-sm">Sort by :</div>

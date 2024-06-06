@@ -35,7 +35,7 @@ const SearchForm = () => {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         autoComplete="off"
-        className="flex gap-4"
+        className="grid grid-cols-1 md:grid-cols-4 gap-4"
       >
         <FormField
           control={form.control}

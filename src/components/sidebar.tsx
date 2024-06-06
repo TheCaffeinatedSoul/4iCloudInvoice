@@ -12,7 +12,7 @@ const Sidebar = () => {
   return (
     <div
       className={`flex flex-col gap-4 bg-[#FFD8D8] transition-all duration-300 ease-in-out ${
-        collapsed ? "w-[5vw]" : "w-[18vw]"
+        collapsed ? "w-16" : "w-64"
       }`}
     >
       <div

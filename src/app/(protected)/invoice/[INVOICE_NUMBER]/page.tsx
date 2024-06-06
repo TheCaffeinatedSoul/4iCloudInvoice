@@ -30,7 +30,7 @@ function InvoiceDetails({ params }: { params: { INVOICE_NUMBER: string } }) {
         </Link>
         <div className="font-bold">Invoice</div>
       </div>
-      <Card className="flex justify-evenly m-4 p-4 gap-4 text-sm">
+      <Card className="grid grid-cols-3 md:grid-cols-4 justify-evenly m-4 p-4 gap-4 text-sm">
         <div>
           <div className="font-bold">Organization</div>
           <div>{invoiceData?.organization}</div>
@@ -71,20 +71,20 @@ function InvoiceDetails({ params }: { params: { INVOICE_NUMBER: string } }) {
         </div>
       </Card>
       <Tabs defaultValue="lines" className="px-4">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="lines" className="flex gap-2">
+        <TabsList className="flex justify-evenly w-full">
+          <TabsTrigger value="lines" className="flex gap-2 w-full">
             <RiXrpLine />
             Lines
           </TabsTrigger>
-          <TabsTrigger value="distribution" className="flex gap-2">
+          <TabsTrigger value="distribution" className="flex gap-2 w-full">
             <LuAlignHorizontalDistributeStart /> Distribution
           </TabsTrigger>
-          <TabsTrigger value="location" className="flex gap-2">
+          <TabsTrigger value="location" className="flex gap-2 w-full">
             <TiLocationArrowOutline /> Location
           </TabsTrigger>
         </TabsList>
         <TabsContent value="lines">
-          <Card>
+          <Card className="grid">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -124,7 +124,7 @@ function InvoiceDetails({ params }: { params: { INVOICE_NUMBER: string } }) {
           </Card>
         </TabsContent>
         <TabsContent value="distribution">
-          <Card>
+          <Card className="grid">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -148,7 +148,7 @@ function InvoiceDetails({ params }: { params: { INVOICE_NUMBER: string } }) {
           </Card>
         </TabsContent>
         <TabsContent value="location">
-          <Card>
+          <Card className="grid">
             <Table>
               <TableHeader>
                 <TableRow>
