@@ -11,7 +11,7 @@ const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(true);
   return (
     <div
-      className={`flex flex-col gap-4 bg-[#FFD8D8] transition-all duration-300 ease-in-out ${
+      className={`flex flex-col gap-4 bg-[#FFD8D8] bg-hero-topography-blue-dark transition-all duration-300 ease-in-out ${
         collapsed ? "w-16" : "w-64"
       }`}
     >
