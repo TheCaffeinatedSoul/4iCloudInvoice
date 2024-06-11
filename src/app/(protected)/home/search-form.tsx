@@ -13,7 +13,11 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 
-const SearchForm = () => {
+interface SearchFormProps {
+  onSubmit: (data: z.infer<typeof searchFormSchema>) => void;
+}
+
+const SearchForm: React.FC<SearchFormProps> = ({ onSubmit }) => {
   const form = useForm<z.infer<typeof searchFormSchema>>({
     resolver: zodResolver(searchFormSchema),
     defaultValues: {
@@ -25,10 +29,6 @@ const SearchForm = () => {
       DATE_TO: "",
     },
   });
-
-  const onSubmit = () => {
-    console.log("Clicked");
-  };
 
   return (
     <Form {...form}>
@@ -95,7 +95,7 @@ const SearchForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>From Date</FormLabel>
-              <FormControl>
+              <FormControl className="w-fit">
                 <Input {...field} type="date" />
               </FormControl>
               <FormMessage />
@@ -108,7 +108,7 @@ const SearchForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>To Date</FormLabel>
-              <FormControl>
+              <FormControl className="w-fit">
                 <Input {...field} type="date" />
               </FormControl>
               <FormMessage />

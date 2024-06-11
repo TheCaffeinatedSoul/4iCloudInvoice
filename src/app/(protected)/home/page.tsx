@@ -21,7 +21,7 @@ const Home = () => {
     <div className="container flex flex-col p-2">
       <div className="p-2 font-bold">Search</div>
       <Card className="p-4 m-2">
-        <SearchForm />
+        <SearchForm onSubmit={handleSearch} />
         <div className="flex justify-end py-4 gap-4">
           <Button
             variant={"outline"}
