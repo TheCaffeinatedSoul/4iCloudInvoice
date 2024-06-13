@@ -43,4 +43,19 @@ type locationData = {
   amount: number;
 };
 
-export type { invoiceData, linesData, distributionData, locationData };
+type searchPayload = {
+  ORGANIZATION?: string;
+  INVOICE_NUMBER?: string;
+  SUPPLIER_NUMBER?: string;
+  SUPPLIER_NAME?: string;
+  FROM_DATE?: string;
+  TO_DATE?: string;
+};
+
+export type {
+  invoiceData,
+  linesData,
+  distributionData,
+  locationData,
+  searchPayload,
+};

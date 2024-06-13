@@ -29,72 +29,17 @@ import { type PaginationState } from "@tanstack/react-table";
 import { serverSideSearchParams } from "@/schema/serverside-pagination";
 import { Card } from "./card";
 interface DataTableProps<TData, TValue> {
+  title: string;
   columns: ColumnDef<TData, TValue>[];
   data: { data: TData[]; pageCount: number };
+  initialVisibilityState: VisibilityState;
 }
 
-const initialVisibilityState: VisibilityState = {
-  "#": true,
-  "invoice number": true,
-  "invoice date": true,
-  "operating unit": true,
-  "customer taxpayer id": false,
-  type: false,
-  "po number": true,
-  "trading partner": true,
-  "supplier number": true,
-  "supplier site code": true,
-  "invoice currency": true,
-  "invoice amount": true,
-  "tax amount": true,
-  "tax control amount": false,
-  "withheld amount": false,
-  "prepaid amount": false,
-  "gl date": false,
-  "payment currency": false,
-  "payment rate date": false,
-  "payment rate type": false,
-  "payment rate": false,
-  "distribution set": false,
-  description: false,
-  "credited invoice": false,
-  "match action": false,
-  project: false,
-  task: false,
-  "expenditure item date": false,
-  "expenditure type": false,
-  "expenditure organization": false,
-  "rate type": false,
-  "exchange date": false,
-  "exchange rate": false,
-  "terms date": false,
-  terms: false,
-  "payment method": false,
-  "pay group": false,
-  "prepayment type": false,
-  "settlement date": false,
-  "taxation country": false,
-  "business category": false,
-  "fiscal classification": false,
-  "related invoice": false,
-  "invoice sub type": false,
-  "self assessed tax amount": false,
-  "internal sequence number": false,
-  "supplier tax invoice number": false,
-  "internal recording date": false,
-  "supplier tax invoice date": false,
-  "supplier tax invoice exchange rate": false,
-  "customs location code": false,
-  "remit to supplier name": false,
-  "remit to supplier site": false,
-  "remit to bank account name": false,
-  "remit to bank account number": false,
-  "release amount net of tax": false,
-};
-
 export function DataTable<TData, TValue>({
+  title,
   columns,
   data: { data, pageCount },
+  initialVisibilityState,
 }: DataTableProps<TData, TValue>) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -156,11 +101,12 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 px-2 gap-2">
-        <div className="grid items-start">
+      <div className="grid grid-cols-1 md:grid-cols-12 px-2 gap-2">
+        <div className="p-2 font-bold">{title}</div>
+        <div className="grid col-start-11 md:col-start- col-end-12 items-end">
           <Searchbar placeholder="Search ..." />
         </div>
-        <div className="grid md:justify-end">
+        <div className="grid col-start-12 md:justify-end">
           <DataTableViewOptions table={table} />
         </div>
       </div>

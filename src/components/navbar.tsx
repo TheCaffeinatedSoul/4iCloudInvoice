@@ -6,9 +6,10 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
 } from "./ui/dropdown-menu";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoSettingsOutline } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 
 const Navbar = () => {
@@ -17,18 +18,31 @@ const Navbar = () => {
       <Image src={logo} width={"50"} alt="4i logo" />
       <DropdownMenu>
         <DropdownMenuTrigger className="flex items-center gap-2">
-          <Card className="flex items-center gap-2 px-1 py-0.5">
+          {/* <Card className="flex items-center gap-2 px-1 py-0.5"> */}
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>U</AvatarFallback>
+          </Avatar>
+          {/* <p className="text-sm">User</p> */}
+          {/* <IoIosArrowDown /> */}
+          {/* </Card> */}
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem className="flex justify-between">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>U</AvatarFallback>
             </Avatar>
             <p className="text-sm">User</p>
-            <IoIosArrowDown />
-          </Card>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem className="flex justify-evenly">
-            Logout <FiLogOut />
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem className="flex justify-between">
+            <IoSettingsOutline />
+            Settings
+          </DropdownMenuItem>
+          <DropdownMenuItem className="flex justify-between">
+            <FiLogOut />
+            Logout
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -3,6 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Input } from "./ui/input";
 import { useDebounceCallback } from "usehooks-ts";
+import { IoSearchOutline } from "react-icons/io5";
 
 function Searchbar({ placeholder }: { placeholder: string }) {
   const pathname = usePathname();
@@ -30,18 +31,19 @@ function Searchbar({ placeholder }: { placeholder: string }) {
 
   return (
     <div className="grid gap-1">
-      {/* <Icon
-        name="Search"
-        className="h-9 w-9 rounded-md bg-primary p-2 text-white dark:text-black"
-      /> */}
-      <Input
-        placeholder={placeholder}
-        className="w-80"
-        defaultValue={params.get("query") || ""}
-        onChange={({ target: { value } }) => {
-          debounced(value);
-        }}
-      />
+      <div className="relative">
+        <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <IoSearchOutline className="text-gray-400" />
+        </span>
+        <Input
+          placeholder={placeholder}
+          className="pl-10"
+          defaultValue={params.get("query") || ""}
+          onChange={({ target: { value } }) => {
+            debounced(value);
+          }}
+        />
+      </div>
     </div>
   );
 }

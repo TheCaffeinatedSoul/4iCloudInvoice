@@ -22,7 +22,7 @@ interface DataTablePaginationProps<TData> {
 
 export function DataTablePagination<TData>({
   table,
-  pageSizeOptions = [10, 20, 30, 40, 50],
+  pageSizeOptions = [10, 25, 50, 100],
 }: DataTablePaginationProps<TData>) {
   return (
     <div className="grid items-center justify-end p-2">
