@@ -101,6 +101,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Invoice Date" />
     ),
+    cell: ({
+      row: {
+        original: { invoice_date },
+      },
+    }) => {
+      return invoice_date.split(" ")[0];
+    },
   },
   {
     id: "operating unit",
@@ -199,6 +206,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="GL Date" />
     ),
+    cell: ({
+      row: {
+        original: { gl_date },
+      },
+    }) => {
+      return gl_date.split(" ")[0];
+    },
   },
   {
     id: "payment currency",
@@ -213,6 +227,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Payment Rate Date" />
     ),
+    cell: ({
+      row: {
+        original: { invoice_date },
+      },
+    }) => {
+      return invoice_date.split(" ")[0];
+    },
   },
   {
     id: "payment rate type",
@@ -276,6 +297,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Expenditure Item Date" />
     ),
+    cell: ({
+      row: {
+        original: { expenditure_item_date },
+      },
+    }) => {
+      return expenditure_item_date.split(" ")[0];
+    },
   },
   {
     id: "expenditure type",
@@ -304,6 +332,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Exchange Date" />
     ),
+    cell: ({
+      row: {
+        original: { exchange_date },
+      },
+    }) => {
+      return exchange_date.split(" ")[0];
+    },
   },
   {
     id: "exchange rate",
@@ -318,6 +353,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Terms Date" />
     ),
+    cell: ({
+      row: {
+        original: { terms_date },
+      },
+    }) => {
+      return terms_date.split(" ")[0];
+    },
   },
   {
     id: "terms",
@@ -353,6 +395,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Settlement Date" />
     ),
+    cell: ({
+      row: {
+        original: { earliest_settlement_date },
+      },
+    }) => {
+      return earliest_settlement_date.split(" ")[0];
+    },
   },
   {
     id: "taxation country",
@@ -419,6 +468,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Internal Recording Date" />
     ),
+    cell: ({
+      row: {
+        original: { internal_recording_date },
+      },
+    }) => {
+      return internal_recording_date.split(" ")[0];
+    },
   },
   {
     id: "supplier tax invoice date",
@@ -429,6 +485,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
         title="Supplier Tax Invoice Date"
       />
     ),
+    cell: ({
+      row: {
+        original: { supplier_tax_invoice_date },
+      },
+    }) => {
+      return supplier_tax_invoice_date.split(" ")[0];
+    },
   },
   {
     id: "supplier tax invoice exchange rate",

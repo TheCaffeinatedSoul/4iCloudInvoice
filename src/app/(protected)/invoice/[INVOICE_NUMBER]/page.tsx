@@ -64,14 +64,14 @@ async function InvoiceDetails({
         </div>
         <div>
           <div className="font-bold">Date</div>
-          <div>{invoiceData[0]?.invoice_date}</div>
+          <div>{invoiceData[0]?.invoice_date.split(" ")[0]}</div>
         </div>
         <div>
           <div className="font-bold">Due Date</div>
-          <div>{invoiceData[0]?.terms_date}</div>
+          <div>{invoiceData[0]?.terms_date.split(" ")[0]}</div>
         </div>
       </Card>
-      <Tabs defaultValue="lines" className="px-4">
+      <Tabs defaultValue="lines" className="px-4 mb-4">
         <TabsList className="flex justify-evenly w-full">
           <TabsTrigger value="lines" className="flex gap-2 w-full">
             <RiXrpLine />
@@ -103,7 +103,13 @@ async function InvoiceDetails({
               <TableBody>
                 {invoiceData[0]?.invoice_lines?.map((line: any) => (
                   <TableRow key={line.line_number}>
-                    <TableCell>{line.line_number}</TableCell>
+                    <TableCell className="underline text-blue-500">
+                      <Link
+                        href={`/invoice/${params.INVOICE_NUMBER}/${line.line_number}`}
+                      >
+                        {line.line_number}
+                      </Link>
+                    </TableCell>
                     <TableCell>{line.line_type_lookup_code}</TableCell>
                     <TableCell>{line.item_code}</TableCell>
                     <TableCell>{line.description}</TableCell>

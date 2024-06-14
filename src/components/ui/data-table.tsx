@@ -103,7 +103,7 @@ export function DataTable<TData, TValue>({
     <div>
       <div className="grid grid-cols-1 md:grid-cols-12 px-2 gap-2">
         <div className="p-2 font-bold">{title}</div>
-        <div className="grid col-start-11 md:col-start- col-end-12 items-end">
+        <div className="grid col-start-11 md:col-start-9 col-end-12 items-end">
           <Searchbar placeholder="Search ..." />
         </div>
         <div className="grid col-start-12 md:justify-end">

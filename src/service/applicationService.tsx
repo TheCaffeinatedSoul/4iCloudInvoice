@@ -4,22 +4,6 @@ import { serverSideSearchParams } from "@/schema/serverside-pagination";
 import { API_URL } from "@/api/api";
 import { searchPayload } from "@/types/types";
 
-const getAllInvoice: any = async ({
-  query,
-  limit,
-  page,
-}: z.infer<typeof serverSideSearchParams>) => {
-  try {
-    const response = await axios.get(
-      `${API_URL}/getall?limit=${limit}&page=${page}&query=${query}`
-    );
-    return response.data;
-  } catch (error) {
-    console.log("Error getting all invoices", error);
-    throw error;
-  }
-};
-
 const getDetailsByInvoiceNumber: any = async (INVOICE_NUMBER: string) => {
   try {
     const response = await axios.post(`${API_URL}/getdetails`, {
@@ -54,4 +38,4 @@ const getInvoiceBySearch: any = async (
   }
 };
 
-export { getAllInvoice, getDetailsByInvoiceNumber, getInvoiceBySearch };
+export { getDetailsByInvoiceNumber, getInvoiceBySearch };
