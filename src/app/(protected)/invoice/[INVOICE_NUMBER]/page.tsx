@@ -14,6 +14,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { getDetailsByInvoiceNumber } from "@/service/applicationService";
+import { DataTable } from "@/components/ui/data-table";
+import {
+  columns,
+  initialVisibilityState,
+} from "@/types/columndefs/holds-columns";
 
 async function InvoiceDetails({
   params,
@@ -125,28 +130,24 @@ async function InvoiceDetails({
           </Card>
         </TabsContent>
         <TabsContent value="holds">
-          <Card className="grid">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Serial Number</TableHead>
-                  <TableHead>Chart of Account</TableHead>
-                  <TableHead>Amount</TableHead>
-                  <TableHead>GL Date</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {invoiceData[0]?.distribution?.map((dist: any) => (
-                  <TableRow key={dist.serial_number}>
-                    <TableCell>{dist.serial_number}</TableCell>
-                    <TableCell>{dist.chart_of_account}</TableCell>
-                    <TableCell>{dist.distribution_amount}</TableCell>
-                    <TableCell>{dist.gl_date}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </Card>
+          {invoiceData[0].invoice_holds ? (
+            <DataTable
+              title="Holds"
+              data={{
+                data: invoiceData[0]?.invoice_holds,
+                pageCount:
+                  invoiceData[0]?.invoice_holds?.length > 10
+                    ? invoiceData[0]?.invoice_holds?.length / 10
+                    : 1,
+              }}
+              columns={columns}
+              initialVisibilityState={initialVisibilityState}
+            />
+          ) : (
+            <div className="container flex justify-center">
+              No records found
+            </div>
+          )}
         </TabsContent>
         <TabsContent value="payment">
           {invoiceData[0]?.invoice_payments?.map((payment: any) => (

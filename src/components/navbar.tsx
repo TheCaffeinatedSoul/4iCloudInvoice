@@ -37,12 +37,12 @@ const Navbar = () => {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="flex justify-between">
-            <IoSettingsOutline />
             Settings
+            <IoSettingsOutline />
           </DropdownMenuItem>
           <DropdownMenuItem className="flex justify-between">
-            <FiLogOut />
             Logout
+            <FiLogOut />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

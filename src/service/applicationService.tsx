@@ -38,4 +38,16 @@ const getInvoiceBySearch: any = async (
   }
 };
 
-export { getDetailsByInvoiceNumber, getInvoiceBySearch };
+const getLineDetails = async (INVOICE_NUMBER: string, LINE_NUMBER: number) => {
+  try {
+    const response = await axios.post(`${API_URL}/getlineinformation`, {
+      INVOICE_NUMBER: INVOICE_NUMBER,
+      LINE_NUMBER: LINE_NUMBER,
+    });
+    return response.data;
+  } catch (error) {
+    console.log("Error getting line details: ", error);
+  }
+};
+
+export { getDetailsByInvoiceNumber, getInvoiceBySearch, getLineDetails };
