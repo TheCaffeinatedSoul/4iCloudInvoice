@@ -1,11 +1,13 @@
 "use client";
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header";
+import { Textarea } from "@/components/ui/textarea";
 import { ColumnDef, VisibilityState } from "@tanstack/react-table";
+import { format } from "date-fns";
 import Link from "next/link";
 import { z } from "zod";
 
 export const initialVisibilityState: VisibilityState = {
-  "#": true,
+  "S.No": true,
   "invoice number": true,
   "invoice date": true,
   "operating unit": true,
@@ -23,13 +25,9 @@ export const initialVisibilityState: VisibilityState = {
   "prepaid amount": false,
   "gl date": false,
   "payment currency": false,
-  "payment rate date": false,
-  "payment rate type": false,
-  "payment rate": false,
   "distribution set": false,
   description: false,
   "credited invoice": false,
-  "match action": false,
   project: false,
   task: false,
   "expenditure item date": false,
@@ -42,17 +40,13 @@ export const initialVisibilityState: VisibilityState = {
   terms: false,
   "payment method": false,
   "pay group": false,
-  "prepayment type": false,
   "settlement date": false,
   "taxation country": false,
   "business category": false,
-  "fiscal classification": false,
   "related invoice": false,
-  "invoice sub type": false,
   "self assessed tax amount": false,
   "internal sequence number": false,
   "supplier tax invoice number": false,
-  "internal recording date": false,
   "supplier tax invoice date": false,
   "supplier tax invoice exchange rate": false,
   "customs location code": false,
@@ -65,7 +59,7 @@ export const initialVisibilityState: VisibilityState = {
 
 const columns: ColumnDef<z.infer<any>>[] = [
   {
-    id: "#",
+    id: "S.No",
     header: "S.No",
     cell: ({ row: { index }, table: { getState } }) => {
       const {
@@ -106,7 +100,9 @@ const columns: ColumnDef<z.infer<any>>[] = [
         original: { invoice_date },
       },
     }) => {
-      return invoice_date.split(" ")[0];
+      if (!invoice_date) return "";
+      const date = invoice_date.split(" ")[0];
+      return format(date, "dd-MMM-yyyy");
     },
   },
   {
@@ -211,7 +207,9 @@ const columns: ColumnDef<z.infer<any>>[] = [
         original: { gl_date },
       },
     }) => {
-      return gl_date.split(" ")[0];
+      if (!gl_date) return "";
+      const date = gl_date.split(" ")[0];
+      return format(date, "dd-MMM-yyyy");
     },
   },
   {
@@ -219,34 +217,6 @@ const columns: ColumnDef<z.infer<any>>[] = [
     accessorKey: "payment_currency_code",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Payment Currency" />
-    ),
-  },
-  {
-    id: "payment rate date",
-    accessorKey: "total_tax_amount", //To be changed
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Payment Rate Date" />
-    ),
-    cell: ({
-      row: {
-        original: { invoice_date },
-      },
-    }) => {
-      return invoice_date.split(" ")[0];
-    },
-  },
-  {
-    id: "payment rate type",
-    accessorKey: "total_tax_amount", //To be changed
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Payment Rate Type" />
-    ),
-  },
-  {
-    id: "payment rate",
-    accessorKey: "total_tax_amount", //To be changed
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Payment Rate" />
     ),
   },
   {
@@ -262,19 +232,19 @@ const columns: ColumnDef<z.infer<any>>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Description" />
     ),
+    cell: ({
+      row: {
+        original: { description },
+      },
+    }) => {
+      return <Textarea value={description} readOnly />;
+    },
   },
   {
     id: "credited invoice",
     accessorKey: "credited_invoice_num",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Credited Invoice" />
-    ),
-  },
-  {
-    id: "match action",
-    accessorKey: "total_tax_amount", //To be changed
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Match Action" />
     ),
   },
   {
@@ -302,7 +272,9 @@ const columns: ColumnDef<z.infer<any>>[] = [
         original: { expenditure_item_date },
       },
     }) => {
-      return expenditure_item_date.split(" ")[0];
+      if (!expenditure_item_date) return "";
+      const date = expenditure_item_date.split(" ")[0];
+      return format(date, "dd-MMM-yyyy");
     },
   },
   {
@@ -337,7 +309,9 @@ const columns: ColumnDef<z.infer<any>>[] = [
         original: { exchange_date },
       },
     }) => {
-      return exchange_date.split(" ")[0];
+      if (!exchange_date) return "";
+      const date = exchange_date.split(" ")[0];
+      return format(date, "dd-MMM-yyyy");
     },
   },
   {
@@ -358,7 +332,9 @@ const columns: ColumnDef<z.infer<any>>[] = [
         original: { terms_date },
       },
     }) => {
-      return terms_date.split(" ")[0];
+      if (!terms_date) return "";
+      const date = terms_date.split(" ")[0];
+      return format(date, "dd-MMM-yyyy");
     },
   },
   {
@@ -383,13 +359,6 @@ const columns: ColumnDef<z.infer<any>>[] = [
     ),
   },
   {
-    id: "prepayment type",
-    accessorKey: "total_tax_amount", //To be changed
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Prepayment Type" />
-    ),
-  },
-  {
     id: "settlement date",
     accessorKey: "earliest_settlement_date",
     header: ({ column }) => (
@@ -400,7 +369,9 @@ const columns: ColumnDef<z.infer<any>>[] = [
         original: { earliest_settlement_date },
       },
     }) => {
-      return earliest_settlement_date.split(" ")[0];
+      if (!earliest_settlement_date) return "";
+      const date = earliest_settlement_date.split(" ")[0];
+      return format(date, "dd-MMM-yyyy");
     },
   },
   {
@@ -418,26 +389,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     ),
   },
   {
-    id: "fiscal classification",
-    accessorKey: "total_tax_amount", //To be changed
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Fiscal Classifcation" />
-    ),
-  },
-  {
     id: "related invoice",
     accessorKey: "tax_related_invoice_num",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Related Invoice" />
     ),
   },
-  {
-    id: "invoice sub type",
-    accessorKey: "total_tax_amount", //To be changed
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Invoice Sub-Type" />
-    ),
-  },
+
   {
     id: "self assessed tax amount",
     accessorKey: "self_assessed_tax_amount",
@@ -463,20 +421,6 @@ const columns: ColumnDef<z.infer<any>>[] = [
     ),
   },
   {
-    id: "internal recording date",
-    accessorKey: "total_tax_amount", //To be changed
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Internal Recording Date" />
-    ),
-    cell: ({
-      row: {
-        original: { internal_recording_date },
-      },
-    }) => {
-      return internal_recording_date.split(" ")[0];
-    },
-  },
-  {
     id: "supplier tax invoice date",
     accessorKey: "supplier_tax_invoice_date",
     header: ({ column }) => (
@@ -490,7 +434,9 @@ const columns: ColumnDef<z.infer<any>>[] = [
         original: { supplier_tax_invoice_date },
       },
     }) => {
-      return supplier_tax_invoice_date.split(" ")[0];
+      if (!supplier_tax_invoice_date) return "";
+      const date = supplier_tax_invoice_date.split(" ")[0];
+      return format(date, "dd-MMM-yyyy");
     },
   },
   {

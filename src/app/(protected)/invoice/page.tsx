@@ -8,9 +8,15 @@ import { DataTable } from "@/components/ui/data-table";
 import {
   columns,
   initialVisibilityState,
-} from "@/types/columndefs/invoice_columns";
+} from "@/types/columndefs/invoice-columns";
 import { serverSideSearchParams } from "@/schema/serverside-pagination";
 import { z } from "zod";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 type InvoiceProps = {
   searchParams: z.infer<typeof serverSideSearchParams>;
@@ -65,14 +71,25 @@ const Invoice = ({ searchParams }: InvoiceProps) => {
 
   return (
     <div className="container flex flex-col p-2">
-      <div className="p-2 font-bold">Search</div>
-      <Card className="p-4 m-2">
-        <SearchForm search={handleSearch} reset={handleRefresh} />
-      </Card>
+      <Accordion
+        type="single"
+        collapsible
+        className="m-2 mt-0"
+        defaultValue="item-1"
+      >
+        <AccordionItem value="item-1">
+          <AccordionTrigger className="p-2 font-bold">Invoice</AccordionTrigger>
+          <AccordionContent>
+            <Card className="p-4">
+              <SearchForm search={handleSearch} reset={handleRefresh} />
+            </Card>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
       {search && (
         <div>
           <DataTable
-            title="Invoices"
+            title="Search Results"
             columns={columns}
             data={invoices}
             initialVisibilityState={initialVisibilityState}

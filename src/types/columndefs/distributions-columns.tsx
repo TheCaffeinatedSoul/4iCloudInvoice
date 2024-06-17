@@ -1,6 +1,7 @@
 "use client";
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header";
 import { ColumnDef, VisibilityState } from "@tanstack/react-table";
+import { format } from "date-fns";
 import { z } from "zod";
 
 export const initialVisibilityState: VisibilityState = {
@@ -64,7 +65,8 @@ const columns: ColumnDef<z.infer<any>>[] = [
       },
     }) => {
       if (!accounting_date) return "";
-      return accounting_date.split(" ")[0];
+      const date = accounting_date.split(" ")[0];
+      return format(date, "dd-MMM-yyyy");
     },
   },
   {
@@ -149,7 +151,8 @@ const columns: ColumnDef<z.infer<any>>[] = [
       },
     }) => {
       if (!expenditure_item_date) return "";
-      return expenditure_item_date.split(" ")[0];
+      const date = expenditure_item_date.split(" ")[0];
+      return format(date, "dd-MMM-yyyy");
     },
   },
   {
@@ -216,7 +219,8 @@ const columns: ColumnDef<z.infer<any>>[] = [
       },
     }) => {
       if (!start_expense_date) return "";
-      return start_expense_date.split(" ")[0];
+      const date = start_expense_date.split(" ")[0];
+      return format(date, "dd-MMM-yyyy");
     },
   },
   {

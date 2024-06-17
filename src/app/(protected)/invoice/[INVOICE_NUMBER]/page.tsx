@@ -5,20 +5,21 @@ import { FaChevronLeft } from "react-icons/fa6";
 import { RiXrpLine } from "react-icons/ri";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import { BsCreditCard } from "react-icons/bs";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { getDetailsByInvoiceNumber } from "@/service/applicationService";
 import { DataTable } from "@/components/ui/data-table";
 import {
-  columns,
-  initialVisibilityState,
+  columns as holdsColumns,
+  initialVisibilityState as holdsInitialVisibilityState,
 } from "@/types/columndefs/holds-columns";
+import {
+  columns as linesColumns,
+  initialVisibilityState as linesInitialVisibilityState,
+} from "@/types/columndefs/line-columns";
+import {
+  columns as paymentsColumns,
+  initialVisibilityState as paymentsInitialVisibilityState,
+} from "@/types/columndefs/payment-columns";
+import { format } from "date-fns";
 
 async function InvoiceDetails({
   params,
@@ -54,7 +55,7 @@ async function InvoiceDetails({
         </div>
         <div>
           <div className="font-bold">Invoice Type</div>
-          <div>{invoiceData[0]?.invoice_type_lookup_code}</div>
+          <div>{invoiceData[0]?.invoice_type_lookup_code_meaning}</div>
         </div>
         <div>
           <div className="font-bold">Invoice Amount</div>
@@ -69,11 +70,15 @@ async function InvoiceDetails({
         </div>
         <div>
           <div className="font-bold">Date</div>
-          <div>{invoiceData[0]?.invoice_date.split(" ")[0]}</div>
+          <div>
+            {format(invoiceData[0]?.invoice_date.split(" ")[0], "dd-MMM-yyyy")}
+          </div>
         </div>
         <div>
           <div className="font-bold">Due Date</div>
-          <div>{invoiceData[0]?.terms_date.split(" ")[0]}</div>
+          <div>
+            {format(invoiceData[0]?.terms_date.split(" ")[0], "dd-MMM-yyyy")}
+          </div>
         </div>
       </Card>
       <Tabs defaultValue="lines" className="px-4 mb-4">
@@ -90,44 +95,24 @@ async function InvoiceDetails({
           </TabsTrigger>
         </TabsList>
         <TabsContent value="lines">
-          <Card className="grid">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Line Number</TableHead>
-                  <TableHead>Line Type</TableHead>
-                  <TableHead>Item</TableHead>
-                  <TableHead>Item Name</TableHead>
-                  <TableHead>UOM</TableHead>
-                  <TableHead>Quantity</TableHead>
-                  <TableHead>Rate</TableHead>
-                  <TableHead>Tax %</TableHead>
-                  <TableHead>Amount</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {invoiceData[0]?.invoice_lines?.map((line: any) => (
-                  <TableRow key={line.line_number}>
-                    <TableCell className="underline text-blue-500">
-                      <Link
-                        href={`/invoice/${params.INVOICE_NUMBER}/${line.line_number}`}
-                      >
-                        {line.line_number}
-                      </Link>
-                    </TableCell>
-                    <TableCell>{line.line_type_lookup_code}</TableCell>
-                    <TableCell>{line.item_code}</TableCell>
-                    <TableCell>{line.description}</TableCell>
-                    <TableCell>{line.unit_meas_lookup_code}</TableCell>
-                    <TableCell>{line.quantity_invoiced}</TableCell>
-                    <TableCell>{line.unit_price}</TableCell>
-                    <TableCell>{line.tax_rate}</TableCell>
-                    <TableCell>{line.amount}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </Card>
+          {invoiceData[0].ap_invoice_lines_all ? (
+            <DataTable
+              title="Lines"
+              data={{
+                data: invoiceData[0]?.ap_invoice_lines_all,
+                pageCount:
+                  invoiceData[0]?.ap_invoice_lines_all?.length > 10
+                    ? invoiceData[0]?.ap_invoice_lines_all?.length / 10
+                    : 1,
+              }}
+              columns={linesColumns}
+              initialVisibilityState={linesInitialVisibilityState}
+            />
+          ) : (
+            <Card className="container flex justify-center items-center min-h-[30vh]">
+              No records found
+            </Card>
+          )}
         </TabsContent>
         <TabsContent value="holds">
           {invoiceData[0].invoice_holds ? (
@@ -140,51 +125,34 @@ async function InvoiceDetails({
                     ? invoiceData[0]?.invoice_holds?.length / 10
                     : 1,
               }}
-              columns={columns}
-              initialVisibilityState={initialVisibilityState}
+              columns={holdsColumns}
+              initialVisibilityState={holdsInitialVisibilityState}
             />
           ) : (
-            <div className="container flex justify-center">
+            <Card className="container flex justify-center items-center min-h-[30vh]">
               No records found
-            </div>
+            </Card>
           )}
         </TabsContent>
         <TabsContent value="payment">
-          {invoiceData[0]?.invoice_payments?.map((payment: any) => (
-            <Card
-              className="grid grid-cols-3 md:grid-cols-4 justify-evenly p-4 gap-6 text-sm border-none shadow-none"
-              key={payment.invoice_num}
-            >
-              <div>
-                <div className="font-bold">Payment Amount</div>
-                <div>{payment.amount}</div>
-              </div>
-              <div>
-                <div className="font-bold">Ledger Name</div>
-                <div>{payment.ledger_name}</div>
-              </div>
-              <div>
-                <div className="font-bold">Asset Code</div>
-                <div>{payment.asset_code_combination}</div>
-              </div>
-              <div>
-                <div className="font-bold">Description</div>
-                <div>{payment.asset_code_desc}</div>
-              </div>
-              <div>
-                <div className="font-bold">Bank A/C Number</div>
-                <div>{payment.bank_account_num}</div>
-              </div>
-              <div>
-                <div className="font-bold">Bank A/C Type</div>
-                <div>{payment.bank_account_type}</div>
-              </div>
-              <div>
-                <div className="font-bold">Payment Date</div>
-                <div>{payment.exchange_date}</div>
-              </div>
+          {invoiceData[0].invoice_payments ? (
+            <DataTable
+              title="Payments"
+              data={{
+                data: invoiceData[0]?.invoice_payments,
+                pageCount:
+                  invoiceData[0]?.invoice_payments?.length > 10
+                    ? invoiceData[0]?.invoice_payments?.length / 10
+                    : 1,
+              }}
+              columns={paymentsColumns}
+              initialVisibilityState={paymentsInitialVisibilityState}
+            />
+          ) : (
+            <Card className="container flex justify-center items-center min-h-[30vh]">
+              No records found
             </Card>
-          ))}
+          )}
         </TabsContent>
       </Tabs>
     </div>

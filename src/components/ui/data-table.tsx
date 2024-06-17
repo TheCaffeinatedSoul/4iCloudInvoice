@@ -101,11 +101,11 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-12 px-2 gap-2">
-        <div className="p-2 font-bold">{title}</div>
-        <div className="grid col-start-11 md:col-start-9 col-end-12 items-end">
+      <div className="grid grid-cols-1 md:grid-cols-12 px-2 gap-2 items-center">
+        <div className="p-2 col-start-1 col-end-3 font-bold">{title}</div>
+        {/* <div className="grid col-start-11 md:col-start-9 col-end-12 items-end">
           <Searchbar placeholder="Search ..." />
-        </div>
+        </div> */}
         <div className="grid col-start-12 md:justify-end">
           <DataTableViewOptions table={table} />
         </div>

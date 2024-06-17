@@ -1,6 +1,7 @@
 "use client";
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header";
 import { ColumnDef, VisibilityState } from "@tanstack/react-table";
+import { format } from "date-fns";
 import { z } from "zod";
 
 export const initialVisibilityState: VisibilityState = {
@@ -51,7 +52,9 @@ const columns: ColumnDef<z.infer<any>>[] = [
         original: { hold_date },
       },
     }) => {
-      return hold_date.split(" ")[0];
+      if (!hold_date) return "";
+      const date = hold_date.split(" ")[0];
+      return format(date, "dd-MMM-yyyy");
     },
   },
   {
@@ -81,6 +84,15 @@ const columns: ColumnDef<z.infer<any>>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Release Date" />
     ),
+    cell: ({
+      row: {
+        original: { release_date },
+      },
+    }) => {
+      if (!release_date) return "";
+      const date = release_date.split(" ")[0];
+      return format(date, "dd-MMM-yyyy");
+    },
   },
   {
     id: "WF status",

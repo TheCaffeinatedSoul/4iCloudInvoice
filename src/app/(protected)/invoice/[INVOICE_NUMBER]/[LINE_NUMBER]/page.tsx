@@ -32,21 +32,23 @@ const Line = async ({
         Line information for invoice number {params.INVOICE_NUMBER} and line{" "}
         {params.LINE_NUMBER}
       </Card>
-      <Card className="grid m-4 mt-0 p-4">
+      <div className="px-2">
         {lineData ? (
           <DataTable
             title="Distributions"
             data={{
-              data: lineData.data[0].invoice_distributions,
+              data: lineData.data[0].ap_invoices_distributions_all,
               pageCount: 1,
             }}
             columns={columns}
             initialVisibilityState={initialVisibilityState}
           />
         ) : (
-          <div>No records found</div>
+          <Card className="container flex justify-center items-center min-h-[30vh]">
+            No records found
+          </Card>
         )}
-      </Card>
+      </div>
     </div>
   );
 };

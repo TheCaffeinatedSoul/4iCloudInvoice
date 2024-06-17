@@ -1,6 +1,4 @@
-import { z } from "zod";
 import axios from "../api/axios";
-import { serverSideSearchParams } from "@/schema/serverside-pagination";
 import { API_URL } from "@/api/api";
 import { searchPayload } from "@/types/types";
 
