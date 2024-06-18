@@ -38,6 +38,11 @@ const SearchForm: React.FC<SearchFormProps> = ({ reset, search }) => {
       <form
         autoComplete="off"
         className="grid grid-cols-1 md:grid-cols-6 gap-4"
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            form.handleSubmit(search)();
+          }
+        }}
       >
         <FormField
           control={form.control}
