@@ -4,7 +4,7 @@ import { searchPayload } from "@/types/types";
 
 const getDetailsByInvoiceNumber: any = async (INVOICE_NUMBER: string) => {
   try {
-    const response = await axios.post(`${API_URL}/getdetails`, {
+    const response = await axios.post(`${API_URL}/invoice/getdetails`, {
       INVOICE_NUMBER: INVOICE_NUMBER,
     });
     return response.data.data;
@@ -20,7 +20,7 @@ const getInvoiceBySearch: any = async (
 ) => {
   try {
     const response = await axios.post(
-      `${API_URL}/getsearchedinvoice?limit=${limit}&page=${page}`,
+      `${API_URL}/invoice/getsearchedinvoice?limit=${limit}&page=${page}`,
       {
         ORGANIZATION: data.ORGANIZATION,
         INVOICE_NUMBER: data.INVOICE_NUMBER,
@@ -38,7 +38,7 @@ const getInvoiceBySearch: any = async (
 
 const getLineDetails = async (INVOICE_NUMBER: string, LINE_NUMBER: number) => {
   try {
-    const response = await axios.post(`${API_URL}/getlineinformation`, {
+    const response = await axios.post(`${API_URL}/invoice/getlineinformation`, {
       INVOICE_NUMBER: INVOICE_NUMBER,
       LINE_NUMBER: LINE_NUMBER,
     });
