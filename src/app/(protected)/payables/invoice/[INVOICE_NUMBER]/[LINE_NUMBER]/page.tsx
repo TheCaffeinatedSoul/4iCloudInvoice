@@ -1,10 +1,10 @@
 import { Card } from "@/components/ui/card";
 import { DataTable } from "@/components/ui/data-table";
-import { getLineDetails } from "@/service/invoiceServices";
+import { getLineDetails } from "@/service/invoice";
 import {
   columns,
   initialVisibilityState,
-} from "@/types/columndefs/distributions-columns";
+} from "@/types/columndefs/invoice/distributions-columns";
 import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa6";
 

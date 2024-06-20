@@ -3,12 +3,12 @@ import { Card } from "@/components/ui/card";
 import SearchForm from "@/components/search-form";
 import { useEffect, useState } from "react";
 import { searchPayload } from "@/types/types";
-import { getInvoiceBySearch } from "@/service/invoiceServices";
+import { getInvoiceBySearch } from "@/service/invoice";
 import { DataTable } from "@/components/ui/data-table";
 import {
   columns,
   initialVisibilityState,
-} from "@/types/columndefs/invoice-columns";
+} from "@/types/columndefs/invoice/invoice-columns";
 import { serverSideSearchParams } from "@/schema/serverside-pagination";
 import { z } from "zod";
 import {

@@ -46,6 +46,7 @@ type locationData = {
 type searchPayload = {
   ORGANIZATION?: string;
   INVOICE_NUMBER?: string;
+  CHECK_NUMBER?: string;
   SUPPLIER_NUMBER?: string;
   SUPPLIER_NAME?: string;
   FROM_DATE?: string;

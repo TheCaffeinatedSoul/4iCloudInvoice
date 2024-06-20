@@ -9,4 +9,13 @@ const invoiceSchema = z.object({
   TO_DATE: z.string().optional(),
 });
 
-export { invoiceSchema };
+const checksSchema = z.object({
+  ORGANIZATION: z.string().optional(),
+  CHECK_NUMBER: z.string().optional(),
+  SUPPLIER_NUMBER: z.string().optional(),
+  SUPPLIER_NAME: z.string().optional(),
+  FROM_DATE: z.string().optional(),
+  TO_DATE: z.string().optional(),
+});
+
+export { invoiceSchema, checksSchema };

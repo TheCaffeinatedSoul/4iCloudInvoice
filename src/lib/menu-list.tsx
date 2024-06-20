@@ -1,17 +1,10 @@
-import {
-  Tag,
-  Users,
-  Settings,
-  Bookmark,
-  SquarePen,
-  LayoutGrid,
-} from "lucide-react";
-import { TbFileInvoice } from "react-icons/tb";
+import { Users, Settings, HandCoins, ReceiptText, Receipt } from "lucide-react";
 
 type Submenu = {
   href: string;
   label: string;
   active: boolean;
+  icon: any;
 };
 
 type Menu = {
@@ -36,17 +29,19 @@ export function getMenuList(pathname: string): Group[] {
           href: "/payables",
           label: "Payables",
           active: pathname.includes("/payables"),
-          icon: SquarePen,
+          icon: HandCoins,
           submenus: [
             {
               href: "/payables/invoice",
               label: "Invoice",
               active: pathname.includes("/invoice"),
+              icon: ReceiptText,
             },
             {
               href: "/payables/checks",
               label: "Checks",
               active: pathname.includes("/checks"),
+              icon: Receipt,
             },
           ],
         },

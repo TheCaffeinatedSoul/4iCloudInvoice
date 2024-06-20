@@ -3,12 +3,11 @@ import { Card } from "@/components/ui/card";
 import SearchForm from "@/components/search-form";
 import { useEffect, useState } from "react";
 import { searchPayload } from "@/types/types";
-import { getInvoiceBySearch } from "@/service/invoiceServices";
 import { DataTable } from "@/components/ui/data-table";
 import {
   columns,
   initialVisibilityState,
-} from "@/types/columndefs/invoice-columns";
+} from "@/types/columndefs/checks/check-headers";
 import { serverSideSearchParams } from "@/schema/serverside-pagination";
 import { z } from "zod";
 import {
@@ -17,14 +16,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { invoiceSchema } from "@/schema/searchformschema";
+import { checksSchema } from "@/schema/searchformschema";
+import { getChecksBySearch } from "@/service/checks";
 
 type ChecksProps = {
   searchParams: z.infer<typeof serverSideSearchParams>;
 };
 
 const defaultValues = {
-  ORGANIZATION: "",
+  CHECK_NUMBER: "",
   INVOICE_NUMBER: "",
   SUPPLIER_NUMBER: "",
   SUPPLIER_NAME: "",
@@ -35,14 +35,14 @@ const defaultValues = {
 const Checks = ({ searchParams }: ChecksProps) => {
   const [search, setSearch] = useState(false);
   const [searchData, setSearchData] = useState<searchPayload>(defaultValues);
-  const [invoices, setInvoices] = useState({
+  const [data, setData] = useState({
     data: [],
     pageCount: 0,
   });
 
   const handleRefresh = (resetForm: () => void) => {
     setSearch(false);
-    setInvoices({
+    setData({
       data: [],
       pageCount: 0,
     });
@@ -64,8 +64,8 @@ const Checks = ({ searchParams }: ChecksProps) => {
     limit: number,
     page: number
   ) => {
-    const response = await getInvoiceBySearch(data, limit, page);
-    setInvoices(response.data.data);
+    const response = await getChecksBySearch(data, limit, page);
+    setData(response.data.data);
   };
 
   useEffect(() => {
@@ -88,7 +88,7 @@ const Checks = ({ searchParams }: ChecksProps) => {
                 search={handleSearch}
                 reset={handleRefresh}
                 defaultValues={defaultValues}
-                schema={invoiceSchema}
+                schema={checksSchema}
               />
             </Card>
           </AccordionContent>
@@ -99,7 +99,7 @@ const Checks = ({ searchParams }: ChecksProps) => {
           <DataTable
             title="Search Results"
             columns={columns}
-            data={invoices}
+            data={data}
             initialVisibilityState={initialVisibilityState}
           />
         </div>

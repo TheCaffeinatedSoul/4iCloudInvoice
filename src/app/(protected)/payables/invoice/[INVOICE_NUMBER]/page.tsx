@@ -5,20 +5,20 @@ import { FaChevronLeft } from "react-icons/fa6";
 import { RiXrpLine } from "react-icons/ri";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import { BsCreditCard } from "react-icons/bs";
-import { getDetailsByInvoiceNumber } from "@/service/invoiceServices";
+import { getDetailsByInvoiceNumber } from "@/service/invoice";
 import { DataTable } from "@/components/ui/data-table";
 import {
   columns as holdsColumns,
   initialVisibilityState as holdsInitialVisibilityState,
-} from "@/types/columndefs/holds-columns";
+} from "@/types/columndefs/invoice/holds-columns";
 import {
   columns as linesColumns,
   initialVisibilityState as linesInitialVisibilityState,
-} from "@/types/columndefs/line-columns";
+} from "@/types/columndefs/invoice/line-columns";
 import {
   columns as paymentsColumns,
   initialVisibilityState as paymentsInitialVisibilityState,
-} from "@/types/columndefs/payment-columns";
+} from "@/types/columndefs/invoice/payment-columns";
 import { format } from "date-fns";
 
 async function InvoiceDetails({
@@ -105,7 +105,9 @@ async function InvoiceDetails({
                 ),
                 pageCount:
                   invoiceData[0]?.ap_invoice_lines_all?.length > 10
-                    ? invoiceData[0]?.ap_invoice_lines_all?.length / 10
+                    ? Math.ceil(
+                        invoiceData[0]?.ap_invoice_lines_all?.length / 10
+                      )
                     : 1,
               }}
               columns={linesColumns}
