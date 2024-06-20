@@ -7,6 +7,7 @@ import { GoHomeFill } from "react-icons/go";
 import { Card } from "./ui/card";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Menu } from "./menu";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -15,7 +16,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`flex flex-col gap-4 bg-[#FFD8D8] bg-hero-topography-blue-dark transition-all duration-300 ease-in-out ${
+      className={`flex flex-col bg-[#FFD8D8] bg-hero-topography-blue-dark transition-all duration-300 ease-in-out ${
         collapsed ? "w-16" : "w-64"
       }`}
     >
@@ -36,34 +37,7 @@ const Sidebar = () => {
           />
         )}
       </div>
-      <div className="flex flex-col items-center justify-center gap-2 w-full px-2">
-        <Card
-          className={`p-2 w-full border-none shadow-none cursor-pointer ${
-            pathname === "/home" ? "" : "bg-transparent"
-          }`}
-        >
-          <Link
-            href={"/home"}
-            className="flex items-center justify-center gap-2"
-          >
-            {!collapsed && <h1 className="font-semibold">Home</h1>}
-            <GoHomeFill />
-          </Link>
-        </Card>
-        <Card
-          className={`p-2 w-full border-none shadow-none cursor-pointer ${
-            pathname.startsWith("/invoice") ? "" : "bg-transparent"
-          }`}
-        >
-          <Link
-            href={"/invoice"}
-            className="flex items-center justify-center gap-2"
-          >
-            {!collapsed && <h1 className="font-semibold">Invoice</h1>}
-            <TbFileInvoice />
-          </Link>
-        </Card>
-      </div>
+      <Menu isOpen={!collapsed} />
     </div>
   );
 };

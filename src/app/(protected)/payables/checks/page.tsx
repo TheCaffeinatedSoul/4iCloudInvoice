@@ -1,9 +1,9 @@
 "use client";
 import { Card } from "@/components/ui/card";
-import SearchForm from "./search-form";
+import SearchForm from "@/components/search-form";
 import { useEffect, useState } from "react";
 import { searchPayload } from "@/types/types";
-import { getInvoiceBySearch } from "@/service/applicationService";
+import { getInvoiceBySearch } from "@/service/invoiceServices";
 import { DataTable } from "@/components/ui/data-table";
 import {
   columns,
@@ -17,21 +17,24 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { invoiceSchema } from "@/schema/searchformschema";
 
-type InvoiceProps = {
+type ChecksProps = {
   searchParams: z.infer<typeof serverSideSearchParams>;
 };
 
-const Invoice = ({ searchParams }: InvoiceProps) => {
+const defaultValues = {
+  ORGANIZATION: "",
+  INVOICE_NUMBER: "",
+  SUPPLIER_NUMBER: "",
+  SUPPLIER_NAME: "",
+  FROM_DATE: "",
+  TO_DATE: "",
+};
+
+const Checks = ({ searchParams }: ChecksProps) => {
   const [search, setSearch] = useState(false);
-  const [searchData, setSearchData] = useState<searchPayload>({
-    ORGANIZATION: "",
-    INVOICE_NUMBER: "",
-    SUPPLIER_NUMBER: "",
-    SUPPLIER_NAME: "",
-    FROM_DATE: "",
-    TO_DATE: "",
-  });
+  const [searchData, setSearchData] = useState<searchPayload>(defaultValues);
   const [invoices, setInvoices] = useState({
     data: [],
     pageCount: 0,
@@ -78,10 +81,15 @@ const Invoice = ({ searchParams }: InvoiceProps) => {
         defaultValue="item-1"
       >
         <AccordionItem value="item-1">
-          <AccordionTrigger className="p-2 font-bold">Invoice</AccordionTrigger>
+          <AccordionTrigger className="p-2 font-bold">Checks</AccordionTrigger>
           <AccordionContent>
             <Card className="p-4">
-              <SearchForm search={handleSearch} reset={handleRefresh} />
+              <SearchForm
+                search={handleSearch}
+                reset={handleRefresh}
+                defaultValues={defaultValues}
+                schema={invoiceSchema}
+              />
             </Card>
           </AccordionContent>
         </AccordionItem>
@@ -100,4 +108,4 @@ const Invoice = ({ searchParams }: InvoiceProps) => {
   );
 };
 
-export default Invoice;
+export default Checks;

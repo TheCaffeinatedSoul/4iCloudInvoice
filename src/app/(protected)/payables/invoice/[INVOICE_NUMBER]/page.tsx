@@ -5,7 +5,7 @@ import { FaChevronLeft } from "react-icons/fa6";
 import { RiXrpLine } from "react-icons/ri";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import { BsCreditCard } from "react-icons/bs";
-import { getDetailsByInvoiceNumber } from "@/service/applicationService";
+import { getDetailsByInvoiceNumber } from "@/service/invoiceServices";
 import { DataTable } from "@/components/ui/data-table";
 import {
   columns as holdsColumns,
@@ -26,12 +26,13 @@ async function InvoiceDetails({
 }: {
   params: { INVOICE_NUMBER: string };
 }) {
-  const invoiceData = await getDetailsByInvoiceNumber(params.INVOICE_NUMBER);
+  const decodedInvoiceNumber = decodeURIComponent(params.INVOICE_NUMBER);
+  const invoiceData = await getDetailsByInvoiceNumber(decodedInvoiceNumber);
 
   return (
     <div className="flex flex-col w-full">
       <div className="flex items-center p-4 gap-2 border-b-2">
-        <Link href={"/invoice"}>
+        <Link href={"/payables/invoice"}>
           <FaChevronLeft className="cursor-pointer" />
         </Link>
         <div className="font-bold">Invoice</div>
@@ -99,7 +100,9 @@ async function InvoiceDetails({
             <DataTable
               title="Lines"
               data={{
-                data: invoiceData[0]?.ap_invoice_lines_all,
+                data: invoiceData[0]?.ap_invoice_lines_all.sort(
+                  (a: any, b: any) => a.line_number - b.line_number
+                ),
                 pageCount:
                   invoiceData[0]?.ap_invoice_lines_all?.length > 10
                     ? invoiceData[0]?.ap_invoice_lines_all?.length / 10
@@ -115,14 +118,14 @@ async function InvoiceDetails({
           )}
         </TabsContent>
         <TabsContent value="holds">
-          {invoiceData[0].invoice_holds ? (
+          {invoiceData[0].ap_holds_all ? (
             <DataTable
               title="Holds"
               data={{
-                data: invoiceData[0]?.invoice_holds,
+                data: invoiceData[0]?.ap_holds_all,
                 pageCount:
-                  invoiceData[0]?.invoice_holds?.length > 10
-                    ? invoiceData[0]?.invoice_holds?.length / 10
+                  invoiceData[0]?.ap_holds_all?.length > 10
+                    ? invoiceData[0]?.ap_holds_all?.length / 10
                     : 1,
               }}
               columns={holdsColumns}
@@ -135,14 +138,14 @@ async function InvoiceDetails({
           )}
         </TabsContent>
         <TabsContent value="payment">
-          {invoiceData[0].invoice_payments ? (
+          {invoiceData[0].ap_invoice_payments_all ? (
             <DataTable
               title="Payments"
               data={{
-                data: invoiceData[0]?.invoice_payments,
+                data: invoiceData[0]?.ap_invoice_payments_all,
                 pageCount:
-                  invoiceData[0]?.invoice_payments?.length > 10
-                    ? invoiceData[0]?.invoice_payments?.length / 10
+                  invoiceData[0]?.ap_invoice_payments_all?.length > 10
+                    ? invoiceData[0]?.ap_invoice_payments_all?.length / 10
                     : 1,
               }}
               columns={paymentsColumns}

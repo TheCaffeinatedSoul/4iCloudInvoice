@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { DataTable } from "@/components/ui/data-table";
-import { getLineDetails } from "@/service/applicationService";
+import { getLineDetails } from "@/service/invoiceServices";
 import {
   columns,
   initialVisibilityState,
@@ -23,7 +23,7 @@ const Line = async ({
   return (
     <div className="flex flex-col w-full">
       <div className="flex items-center p-4 gap-2 border-b-2">
-        <Link href={`/invoice/${params.INVOICE_NUMBER}`}>
+        <Link href={`/payables/invoice/${params.INVOICE_NUMBER}`}>
           <FaChevronLeft className="cursor-pointer" />
         </Link>
         <div className="font-bold">Lines</div>
@@ -37,7 +37,7 @@ const Line = async ({
           <DataTable
             title="Distributions"
             data={{
-              data: lineData.data[0].ap_invoices_distributions_all,
+              data: lineData.data[0].ap_invoice_distributions_all,
               pageCount: 1,
             }}
             columns={columns}

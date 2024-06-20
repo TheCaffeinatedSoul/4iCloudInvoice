@@ -79,10 +79,11 @@ const columns: ColumnDef<z.infer<any>>[] = [
         original: { invoice_num },
       },
     }) => {
+      const encodedInvoiceNumber = encodeURIComponent(invoice_num);
       return (
         <Link
           style={{ textDecoration: "underline", color: "blue" }}
-          href={`/invoice/${invoice_num}`}
+          href={`/payables/invoice/${encodedInvoiceNumber}`}
         >
           {invoice_num}
         </Link>

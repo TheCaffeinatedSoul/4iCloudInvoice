@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const searchFormSchema = z.object({
+const invoiceSchema = z.object({
   ORGANIZATION: z.string().optional(),
   INVOICE_NUMBER: z.string().optional(),
   SUPPLIER_NUMBER: z.string().optional(),
@@ -9,4 +9,4 @@ const searchFormSchema = z.object({
   TO_DATE: z.string().optional(),
 });
 
-export { searchFormSchema };
+export { invoiceSchema };
