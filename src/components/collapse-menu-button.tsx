@@ -103,11 +103,13 @@ export function CollapseMenuButton({
           <Button
             key={index}
             variant={active ? "default" : "ghost"}
-            className="w-full justify-start h-10 mb-1"
+            className={`w-full justify-start h-10 mb-1 ${
+              active ? "" : "hover:bg-gray-200"
+            }`}
             asChild
           >
             <Link href={href}>
-              <span className="mr-4 ml-8">
+              <span className="mr-4 ml-2">
                 <Icon size={18} />
               </span>
               <p

@@ -3,11 +3,12 @@ import { Card } from "@/components/ui/card";
 import SearchForm from "@/components/search-form";
 import { useEffect, useState } from "react";
 import { searchPayload } from "@/types/types";
+import { getInvoiceBySearch } from "@/service/payables/invoice";
 import { DataTable } from "@/components/ui/data-table";
 import {
   columns,
   initialVisibilityState,
-} from "@/types/columndefs/checks/check-headers";
+} from "@/types/columndefs/payables/invoice/invoice-columns";
 import { serverSideSearchParams } from "@/schema/serverside-pagination";
 import { z } from "zod";
 import {
@@ -16,15 +17,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { checksSchema } from "@/schema/searchformschema";
-import { getChecksBySearch } from "@/service/checks";
+import { invoiceSchema } from "@/schema/searchformschema";
 
-type ChecksProps = {
+type InvoiceProps = {
   searchParams: z.infer<typeof serverSideSearchParams>;
 };
 
 const defaultValues = {
-  CHECK_NUMBER: "",
+  ORGANIZATION: "",
   INVOICE_NUMBER: "",
   SUPPLIER_NUMBER: "",
   SUPPLIER_NAME: "",
@@ -32,17 +32,17 @@ const defaultValues = {
   TO_DATE: "",
 };
 
-const Checks = ({ searchParams }: ChecksProps) => {
+const Invoices = ({ searchParams }: InvoiceProps) => {
   const [search, setSearch] = useState(false);
   const [searchData, setSearchData] = useState<searchPayload>(defaultValues);
-  const [data, setData] = useState({
+  const [invoices, setInvoices] = useState({
     data: [],
     pageCount: 0,
   });
 
   const handleRefresh = (resetForm: () => void) => {
     setSearch(false);
-    setData({
+    setInvoices({
       data: [],
       pageCount: 0,
     });
@@ -64,8 +64,8 @@ const Checks = ({ searchParams }: ChecksProps) => {
     limit: number,
     page: number
   ) => {
-    const response = await getChecksBySearch(data, limit, page);
-    setData(response.data.data);
+    const response = await getInvoiceBySearch(data, limit, page);
+    setInvoices(response.data.data);
   };
 
   useEffect(() => {
@@ -81,14 +81,16 @@ const Checks = ({ searchParams }: ChecksProps) => {
         defaultValue="item-1"
       >
         <AccordionItem value="item-1">
-          <AccordionTrigger className="p-2 font-bold">Checks</AccordionTrigger>
+          <AccordionTrigger className="p-2 font-bold">
+            Invoices
+          </AccordionTrigger>
           <AccordionContent>
             <Card className="p-4">
               <SearchForm
                 search={handleSearch}
                 reset={handleRefresh}
                 defaultValues={defaultValues}
-                schema={checksSchema}
+                schema={invoiceSchema}
               />
             </Card>
           </AccordionContent>
@@ -99,7 +101,7 @@ const Checks = ({ searchParams }: ChecksProps) => {
           <DataTable
             title="Search Results"
             columns={columns}
-            data={data}
+            data={invoices}
             initialVisibilityState={initialVisibilityState}
           />
         </div>
@@ -108,4 +110,4 @@ const Checks = ({ searchParams }: ChecksProps) => {
   );
 };
 
-export default Checks;
+export default Invoices;

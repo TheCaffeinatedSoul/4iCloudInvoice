@@ -23,6 +23,7 @@ const getChecksBySearch: any = async (
       `${API_URL}/checks/getsearchedchecks?limit=${limit}&page=${page}`,
       {
         ORGANIZATION: data.ORGANIZATION,
+        INVOICE_NUMBER: data.INVOICE_NUMBER,
         CHECK_NUMBER: data.CHECK_NUMBER,
         SUPPLIER_NUMBER: data.SUPPLIER_NUMBER,
         SUPPLIER_NAME: data.SUPPLIER_NAME,

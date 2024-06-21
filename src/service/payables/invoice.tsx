@@ -1,4 +1,4 @@
-import axios from "../api/axios";
+import axios from "../../api/axios";
 import { API_URL } from "@/api/api";
 import { searchPayload } from "@/types/types";
 

@@ -50,7 +50,17 @@ const SearchForm: React.FC<SearchFormProps> = ({
             name={key}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{key.replace(/_/g, " ")}</FormLabel>
+                <FormLabel>
+                  {key
+                    .replace(/_/g, " ")
+                    .split(" ")
+                    .map(
+                      (word) =>
+                        word.charAt(0).toUpperCase() +
+                        word.slice(1).toLowerCase()
+                    )
+                    .join(" ")}
+                </FormLabel>
                 <FormControl>
                   <Input
                     {...field}

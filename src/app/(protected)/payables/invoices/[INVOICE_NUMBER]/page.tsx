@@ -5,20 +5,20 @@ import { FaChevronLeft } from "react-icons/fa6";
 import { RiXrpLine } from "react-icons/ri";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import { BsCreditCard } from "react-icons/bs";
-import { getDetailsByInvoiceNumber } from "@/service/invoice";
+import { getDetailsByInvoiceNumber } from "@/service/payables/invoice";
 import { DataTable } from "@/components/ui/data-table";
 import {
   columns as holdsColumns,
   initialVisibilityState as holdsInitialVisibilityState,
-} from "@/types/columndefs/invoice/holds-columns";
+} from "@/types/columndefs/payables/invoice/holds-columns";
 import {
   columns as linesColumns,
   initialVisibilityState as linesInitialVisibilityState,
-} from "@/types/columndefs/invoice/line-columns";
+} from "@/types/columndefs/payables/invoice/line-columns";
 import {
   columns as paymentsColumns,
   initialVisibilityState as paymentsInitialVisibilityState,
-} from "@/types/columndefs/invoice/payment-columns";
+} from "@/types/columndefs/payables/invoice/payment-columns";
 import { format } from "date-fns";
 
 async function InvoiceDetails({

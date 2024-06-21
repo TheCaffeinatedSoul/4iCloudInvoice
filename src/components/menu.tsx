@@ -90,7 +90,7 @@ export function Menu({ isOpen }: MenuProps) {
                       </TooltipProvider>
                     </div>
                   ) : (
-                    <div className="w-full" key={index}>
+                    <div className="w-full mb-1" key={index}>
                       <CollapseMenuButton
                         icon={Icon}
                         label={label}

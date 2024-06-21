@@ -1,7 +1,6 @@
 import Image from "next/image";
 import logo from "../../public/4i Logo_white.svg";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Card } from "./ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,10 +10,12 @@ import {
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
+import { SheetMenu } from "./sheet-menu";
 
 const Navbar = () => {
   return (
     <div className="flex justify-between items-center p-2 bg-[#32012F]">
+      <SheetMenu />
       <Image src={logo} width={"50"} alt="4i logo" />
       <DropdownMenu>
         <DropdownMenuTrigger className="flex items-center gap-2">

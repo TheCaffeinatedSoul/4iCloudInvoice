@@ -1,10 +1,10 @@
 import { Card } from "@/components/ui/card";
 import { DataTable } from "@/components/ui/data-table";
-import { getChecksDetailsByCheckNumber } from "@/service/checks";
+import { getChecksDetailsByCheckNumber } from "@/service/payables/payments";
 import {
   columns,
   initialVisibilityState,
-} from "@/types/columndefs/checks/payments";
+} from "@/types/columndefs/payables/checks/payments";
 import { format } from "date-fns";
 import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa";
