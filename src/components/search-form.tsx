@@ -61,7 +61,11 @@ const SearchForm: React.FC<SearchFormProps> = ({
                     )
                     .join(" ")}
                 </FormLabel>
-                <FormControl>
+                <FormControl
+                  className={`${
+                    key.includes("DATE") ? "justify-center w-fit md:w-full" : ""
+                  }`}
+                >
                   <Input
                     {...field}
                     placeholder={`Enter ${key
