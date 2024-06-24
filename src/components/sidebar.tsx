@@ -11,7 +11,6 @@ const Sidebar = () => {
       className={`hidden md:flex flex-col bg-[#FFD8D8] bg-hero-topography-blue-dark transition-all duration-300 ease-in-out ${
         collapsed ? "w-16" : "w-80"
       }`}
-      onClick={() => setCollapsed(!collapsed)}
     >
       <div
         className={`flex p-4 pb-0 items-center ${
