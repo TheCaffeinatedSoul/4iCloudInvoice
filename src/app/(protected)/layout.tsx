@@ -11,7 +11,7 @@ function ProtectedLayout({
   return (
     <div className="flex flex-col">
       <Navbar />
-      <div className="flex bg-[#FFF7F7] min-h-screen overflow-x-scroll">
+      <div className="flex bg-[#FFF7F7] min-h-screen overflow-x-scroll pt-16">
         <Sidebar />
         {children}
       </div>

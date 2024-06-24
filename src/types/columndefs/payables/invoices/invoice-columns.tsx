@@ -83,7 +83,7 @@ const columns: ColumnDef<z.infer<any>>[] = [
       return (
         <Link
           style={{ textDecoration: "underline", color: "blue" }}
-          href={`/payables/invoice/${encodedInvoiceNumber}`}
+          href={`/payables/invoices/${encodedInvoiceNumber}`}
         >
           {invoice_num}
         </Link>

@@ -10,15 +10,15 @@ import { DataTable } from "@/components/ui/data-table";
 import {
   columns as holdsColumns,
   initialVisibilityState as holdsInitialVisibilityState,
-} from "@/types/columndefs/payables/invoice/holds-columns";
+} from "@/types/columndefs/payables/invoices/holds-columns";
 import {
   columns as linesColumns,
   initialVisibilityState as linesInitialVisibilityState,
-} from "@/types/columndefs/payables/invoice/line-columns";
+} from "@/types/columndefs/payables/invoices/line-columns";
 import {
   columns as paymentsColumns,
   initialVisibilityState as paymentsInitialVisibilityState,
-} from "@/types/columndefs/payables/invoice/payment-columns";
+} from "@/types/columndefs/payables/invoices/payment-columns";
 import { format } from "date-fns";
 
 async function InvoiceDetails({
@@ -32,7 +32,7 @@ async function InvoiceDetails({
   return (
     <div className="flex flex-col w-full">
       <div className="flex items-center p-4 gap-2 border-b-2">
-        <Link href={"/payables/invoice"}>
+        <Link href={"/payables/invoices"}>
           <FaChevronLeft className="cursor-pointer" />
         </Link>
         <div className="font-bold">Invoice</div>

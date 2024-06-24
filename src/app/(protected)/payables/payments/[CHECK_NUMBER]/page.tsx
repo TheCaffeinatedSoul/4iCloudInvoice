@@ -16,7 +16,7 @@ async function CheckDetails({ params }: { params: { CHECK_NUMBER: string } }) {
   return (
     <div className="flex flex-col w-full">
       <div className="flex items-center p-4 gap-2 border-b-2">
-        <Link href={"/payables/checks"}>
+        <Link href={"/payables/payments"}>
           <FaChevronLeft className="cursor-pointer" />
         </Link>
         <div className="font-bold">Checks</div>

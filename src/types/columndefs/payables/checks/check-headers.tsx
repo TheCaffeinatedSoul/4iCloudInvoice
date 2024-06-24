@@ -48,7 +48,6 @@ const columns: ColumnDef<z.infer<any>>[] = [
   {
     id: "S.No",
     header: "S.No",
-    accessorKey: "S.No",
     cell: ({ row }) => {
       return <div className="flex items-center">{row.index + 1}</div>;
     },
@@ -68,7 +67,7 @@ const columns: ColumnDef<z.infer<any>>[] = [
       return (
         <Link
           style={{ textDecoration: "underline", color: "blue" }}
-          href={`/payables/checks/${encodedInvoiceNumber}`}
+          href={`/payables/payments/${encodedInvoiceNumber}`}
         >
           {check_number}
         </Link>

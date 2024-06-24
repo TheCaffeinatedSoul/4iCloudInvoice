@@ -4,7 +4,7 @@ import { getLineDetails } from "@/service/payables/invoice";
 import {
   columns,
   initialVisibilityState,
-} from "@/types/columndefs/payables/invoice/distributions-columns";
+} from "@/types/columndefs/payables/invoices/distributions-columns";
 import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa6";
 
@@ -23,7 +23,7 @@ const Line = async ({
   return (
     <div className="flex flex-col w-full">
       <div className="flex items-center p-4 gap-2 border-b-2">
-        <Link href={`/payables/invoice/${params.INVOICE_NUMBER}`}>
+        <Link href={`/payables/invoices/${params.INVOICE_NUMBER}`}>
           <FaChevronLeft className="cursor-pointer" />
         </Link>
         <div className="font-bold">Lines</div>
