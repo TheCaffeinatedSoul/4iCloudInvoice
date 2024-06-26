@@ -5,15 +5,15 @@ import {
 } from "@/types/columndefs/payables/checks/check-headers";
 import { serverSideSearchParams } from "@/schema/serverside-pagination";
 import { z } from "zod";
-import { checksSchema } from "@/schema/searchformschema";
-import SearchableLayout from "@/components/default-layout";
+import { searchSchema } from "@/schema/searchformschema";
+import SearchableLayout from "@/components/layouts/searchable-layout";
 import { getChecksBySearch } from "@/service/payables/payments";
 
 type PaymentProps = {
   searchParams: z.infer<typeof serverSideSearchParams>;
 };
 
-const defaultValues: z.infer<typeof checksSchema> = {
+const defaultValues: z.infer<typeof searchSchema> = {
   ORGANIZATION: "",
   CHECK_NUMBER: "",
   SUPPLIER_NUMBER: "",
@@ -27,7 +27,7 @@ const Payments = ({ searchParams }: PaymentProps) => {
     <SearchableLayout
       title="Payments"
       defaultValues={defaultValues}
-      schema={checksSchema}
+      schema={searchSchema}
       columns={columns}
       initialVisibilityState={initialVisibilityState}
       searchFunction={getChecksBySearch}

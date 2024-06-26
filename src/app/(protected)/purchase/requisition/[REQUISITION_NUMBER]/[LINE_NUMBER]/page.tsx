@@ -1,34 +1,31 @@
 import SelectedLayout from "@/components/layouts/selected-layout";
 import { Card } from "@/components/ui/card";
 import { DataTable } from "@/components/ui/data-table";
-import { getLineDetails } from "@/service/payables/invoice";
+import { getLineDetails } from "@/service/purchase/requisition";
 import {
   columns,
   initialVisibilityState,
-} from "@/types/columndefs/payables/invoices/distributions";
-import Link from "next/link";
-import { FaChevronLeft } from "react-icons/fa6";
+} from "@/types/columndefs/purchase/requisition/distributions";
 
 const Line = async ({
   params,
 }: {
   params: {
-    INVOICE_NUMBER: string;
+    REQUISITION_NUMBER: string;
     LINE_NUMBER: number;
   };
 }) => {
   const lineData = await getLineDetails(
-    params.INVOICE_NUMBER,
+    params.REQUISITION_NUMBER,
     params.LINE_NUMBER
   );
 
-  const cardHeader = [
-    { title: "Invoice Number", value: params.INVOICE_NUMBER },
-  ];
+  const cardHeader = [{ title: "Requisition Number" }];
+
   return (
     <SelectedLayout
       title="Line"
-      backLink={`/payables/invoices/${params.INVOICE_NUMBER}`}
+      backLink={`/purchase/requisition/${params.REQUISITION_NUMBER}`}
       cardDetails={cardHeader}
     >
       <div className="px-2">
@@ -36,7 +33,7 @@ const Line = async ({
           <DataTable
             title="Distributions"
             data={{
-              data: lineData.data[0].ap_invoice_distributions_all,
+              data: lineData?.data[0]?.requisition_distributions,
               pageCount: 1,
             }}
             columns={columns}

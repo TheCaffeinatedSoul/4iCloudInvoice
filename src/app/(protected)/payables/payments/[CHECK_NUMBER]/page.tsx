@@ -45,18 +45,20 @@ async function CheckDetails({ params }: { params: { CHECK_NUMBER: string } }) {
           </div>
         </div>
       </Card>
-      <DataTable
-        title="Payments"
-        data={{
-          data: checkData[0]?.ap_invoice_payments_all,
-          pageCount:
-            checkData[0]?.ap_invoice_payments_all?.length > 10
-              ? Math.ceil(checkData[0]?.ap_invoice_payments_all?.length / 10)
-              : 1,
-        }}
-        columns={columns}
-        initialVisibilityState={initialVisibilityState}
-      />
+      <div className="px-4">
+        <DataTable
+          title="Payments"
+          data={{
+            data: checkData[0]?.ap_invoice_payments_all,
+            pageCount:
+              checkData[0]?.ap_invoice_payments_all?.length > 10
+                ? Math.ceil(checkData[0]?.ap_invoice_payments_all?.length / 10)
+                : 1,
+          }}
+          columns={columns}
+          initialVisibilityState={initialVisibilityState}
+        />
+      </div>
     </div>
   );
 }

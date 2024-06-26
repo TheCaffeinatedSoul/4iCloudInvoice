@@ -10,16 +10,17 @@ import { DataTable } from "@/components/ui/data-table";
 import {
   columns as holdsColumns,
   initialVisibilityState as holdsInitialVisibilityState,
-} from "@/types/columndefs/payables/invoices/holds-columns";
+} from "@/types/columndefs/payables/invoices/holds";
 import {
   columns as linesColumns,
   initialVisibilityState as linesInitialVisibilityState,
-} from "@/types/columndefs/payables/invoices/line-columns";
+} from "@/types/columndefs/payables/invoices/lines";
 import {
   columns as paymentsColumns,
   initialVisibilityState as paymentsInitialVisibilityState,
-} from "@/types/columndefs/payables/invoices/payment-columns";
+} from "@/types/columndefs/payables/invoices/payments";
 import { format } from "date-fns";
+import SelectedLayout from "@/components/layouts/selected-layout";
 
 async function InvoiceDetails({
   params,
@@ -29,59 +30,39 @@ async function InvoiceDetails({
   const decodedInvoiceNumber = decodeURIComponent(params.INVOICE_NUMBER);
   const invoiceData = await getDetailsByInvoiceNumber(decodedInvoiceNumber);
 
+  const headerCard = [
+    { title: "Operating Unit", value: invoiceData[0]?.org_name },
+    { title: "Invoice Number", value: invoiceData[0]?.invoice_num },
+    { title: "Supplier Number", value: invoiceData[0]?.vendor_num },
+    { title: "Supplier Name", value: invoiceData[0]?.vendor_name },
+    {
+      title: "Invoice Type",
+      value: invoiceData[0]?.invoice_type_lookup_code_meaning,
+    },
+    {
+      title: "Invoice Amount",
+      value:
+        invoiceData[0].invoice_currency_code +
+        " " +
+        invoiceData[0].invoice_amount,
+    },
+    { title: "Term", value: invoiceData[0]?.terms_name },
+    {
+      title: "Date",
+      value: format(invoiceData[0]?.invoice_date.split(" ")[0], "dd-MMM-yyyy"),
+    },
+    {
+      title: "Due Date",
+      value: format(invoiceData[0]?.terms_date.split(" ")[0], "dd-MMM-yyyy"),
+    },
+  ];
+
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex items-center p-4 gap-2 border-b-2">
-        <Link href={"/payables/invoices"}>
-          <FaChevronLeft className="cursor-pointer" />
-        </Link>
-        <div className="font-bold">Invoice</div>
-      </div>
-      <Card className="grid grid-cols-3 md:grid-cols-4 justify-evenly m-4 p-4 gap-4 text-sm bg-[#FFF6D7] border-none shadow-none">
-        <div>
-          <div className="font-bold">Operating Unit</div>
-          <div>{invoiceData[0]?.org_name}</div>
-        </div>
-        <div>
-          <div className="font-bold">Invoice Number</div>
-          <div>{invoiceData[0]?.invoice_num}</div>
-        </div>
-        <div>
-          <div className="font-bold">Supplier Number</div>
-          <div>{invoiceData[0]?.vendor_num}</div>
-        </div>
-        <div>
-          <div className="font-bold">Supplier Name</div>
-          <div>{invoiceData[0]?.vendor_name}</div>
-        </div>
-        <div>
-          <div className="font-bold">Invoice Type</div>
-          <div>{invoiceData[0]?.invoice_type_lookup_code_meaning}</div>
-        </div>
-        <div>
-          <div className="font-bold">Invoice Amount</div>
-          <div>
-            {invoiceData[0]?.invoice_currency_code}{" "}
-            {invoiceData[0]?.invoice_amount}
-          </div>
-        </div>
-        <div>
-          <div className="font-bold">Term</div>
-          <div>{invoiceData[0]?.terms_name}</div>
-        </div>
-        <div>
-          <div className="font-bold">Date</div>
-          <div>
-            {format(invoiceData[0]?.invoice_date.split(" ")[0], "dd-MMM-yyyy")}
-          </div>
-        </div>
-        <div>
-          <div className="font-bold">Due Date</div>
-          <div>
-            {format(invoiceData[0]?.terms_date.split(" ")[0], "dd-MMM-yyyy")}
-          </div>
-        </div>
-      </Card>
+    <SelectedLayout
+      title="Invoices"
+      backLink="/payables/invoices"
+      cardDetails={headerCard}
+    >
       <Tabs defaultValue="lines" className="px-4 mb-4">
         <TabsList className="flex justify-evenly w-full">
           <TabsTrigger value="lines" className="flex gap-2 w-full">
@@ -147,7 +128,9 @@ async function InvoiceDetails({
                 data: invoiceData[0]?.ap_invoice_payments_all,
                 pageCount:
                   invoiceData[0]?.ap_invoice_payments_all?.length > 10
-                    ? invoiceData[0]?.ap_invoice_payments_all?.length / 10
+                    ? Math.ceil(
+                        invoiceData[0]?.ap_invoice_payments_all?.length / 10
+                      )
                     : 1,
               }}
               columns={paymentsColumns}
@@ -160,7 +143,8 @@ async function InvoiceDetails({
           )}
         </TabsContent>
       </Tabs>
-    </div>
+      {/* </div> */}
+    </SelectedLayout>
   );
 }
 

@@ -1,15 +1,14 @@
-import axios from "../../api/axios";
-import { API_URL } from "@/api/api";
+import axios from "@/api/axios";
 import { searchPayload } from "@/types/types";
 
 const getDetailsByInvoiceNumber: any = async (INVOICE_NUMBER: string) => {
   try {
-    const response = await axios.post(`${API_URL}/invoice/getdetails`, {
+    const response = await axios.post(`/payables/invoice/getdetails`, {
       INVOICE_NUMBER: INVOICE_NUMBER,
     });
     return response.data.data;
   } catch (error) {
-    console.log("Error getting details by invoice number", error);
+    console.error("Error getting details by invoice number", error);
   }
 };
 
@@ -20,7 +19,7 @@ const getInvoiceBySearch: any = async (
 ) => {
   try {
     const response = await axios.post(
-      `${API_URL}/invoice/getsearchedinvoice?limit=${limit}&page=${page}`,
+      `/payables/invoice/getsearchedinvoice?limit=${limit}&page=${page}`,
       {
         ORGANIZATION: data.ORGANIZATION,
         INVOICE_NUMBER: data.INVOICE_NUMBER,
@@ -32,19 +31,19 @@ const getInvoiceBySearch: any = async (
     );
     return response;
   } catch (error) {
-    console.log("Error getting invoice by search: ", error);
+    console.error("Error getting invoice by search: ", error);
   }
 };
 
 const getLineDetails = async (INVOICE_NUMBER: string, LINE_NUMBER: number) => {
   try {
-    const response = await axios.post(`${API_URL}/invoice/getlineinformation`, {
+    const response = await axios.post(`/payables/invoice/getlineinformation`, {
       INVOICE_NUMBER: INVOICE_NUMBER,
       LINE_NUMBER: LINE_NUMBER,
     });
     return response.data;
   } catch (error) {
-    console.log("Error getting line details: ", error);
+    console.error("Error getting line details: ", error);
   }
 };
 

@@ -58,7 +58,7 @@ const SearchableLayout = ({
       setSearch(true);
       await performSearch(data, searchParams.limit, searchParams.page);
     } catch (error) {
-      console.log("Error fetching search results: ", error);
+      console.error("Error fetching search results: ", error);
     }
   };
 
@@ -68,7 +68,9 @@ const SearchableLayout = ({
     page: number
   ) => {
     const response = await searchFunction(data, limit, page);
-    setData(response.data.data);
+    if (response) {
+      setData(response.data.data);
+    }
   };
 
   useEffect(() => {

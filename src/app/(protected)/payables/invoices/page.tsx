@@ -3,17 +3,17 @@ import { getInvoiceBySearch } from "@/service/payables/invoice";
 import {
   columns,
   initialVisibilityState,
-} from "@/types/columndefs/payables/invoices/invoice-columns";
+} from "@/types/columndefs/payables/invoices/invoice-headers";
 import { serverSideSearchParams } from "@/schema/serverside-pagination";
 import { z } from "zod";
-import { invoiceSchema } from "@/schema/searchformschema";
-import SearchableLayout from "@/components/default-layout";
+import { searchSchema } from "@/schema/searchformschema";
+import SearchableLayout from "@/components/layouts/searchable-layout";
 
 type InvoiceProps = {
   searchParams: z.infer<typeof serverSideSearchParams>;
 };
 
-const defaultValues: z.infer<typeof invoiceSchema> = {
+const defaultValues: z.infer<typeof searchSchema> = {
   ORGANIZATION: "",
   INVOICE_NUMBER: "",
   SUPPLIER_NUMBER: "",
@@ -27,7 +27,7 @@ const Invoices = ({ searchParams }: InvoiceProps) => {
     <SearchableLayout
       title="Invoices"
       defaultValues={defaultValues}
-      schema={invoiceSchema}
+      schema={searchSchema}
       columns={columns}
       initialVisibilityState={initialVisibilityState}
       searchFunction={getInvoiceBySearch}

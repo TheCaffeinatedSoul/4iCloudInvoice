@@ -9,7 +9,6 @@ import { z } from "zod";
 export const initialVisibilityState: VisibilityState = {
   "S.No": true,
   "invoice number": true,
-  "invoice date": true,
   "operating unit": true,
   "customer taxpayer id": false,
   type: false,
@@ -17,6 +16,7 @@ export const initialVisibilityState: VisibilityState = {
   "trading partner": true,
   "supplier number": true,
   "supplier site code": true,
+  "invoice date": true,
   "invoice currency": true,
   "invoice amount": true,
   "tax amount": true,
@@ -47,6 +47,7 @@ export const initialVisibilityState: VisibilityState = {
   "self assessed tax amount": false,
   "internal sequence number": false,
   "supplier tax invoice number": false,
+  "tax invoice recording data": false,
   "supplier tax invoice date": false,
   "supplier tax invoice exchange rate": false,
   "customs location code": false,
@@ -418,6 +419,16 @@ const columns: ColumnDef<z.infer<any>>[] = [
       <DataTableColumnHeader
         column={column}
         title="Supplier Tax Invoice Number"
+      />
+    ),
+  },
+  {
+    id: "tax invoice recording date",
+    accessorKey: "tax_invoice_recording_date",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title="Tax Invoice Recording Date"
       />
     ),
   },

@@ -51,6 +51,8 @@ type searchPayload = {
   SUPPLIER_NAME?: string;
   FROM_DATE?: string;
   TO_DATE?: string;
+  TRANSACTION_NUMBER?: string;
+  REQUISITION_NUMBER?: string;
 };
 
 export type {
