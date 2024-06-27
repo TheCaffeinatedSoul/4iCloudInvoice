@@ -22,25 +22,22 @@ const getRequisitionBySearch: any = async (
   }
 };
 
-const getDetailsByRequisitionNumber = async (REQUISITION_NUMBER: string) => {
+const getDetailsByRequisitionNumber = async (REQUISITION_ID: string) => {
   try {
     const response = await axios.post("/purchase/requisition/getdetails", {
-      REQUISITION_NUMBER: REQUISITION_NUMBER,
+      REQUISITION_ID: REQUISITION_ID,
     });
     return response.data.data;
   } catch (error) {
-    console.log("Error getting details by requisition number: ", error);
+    console.error("Error getting details by requisition number: ", error);
     throw error;
   }
 };
 
-const getLineDetails = async (
-  REQUISITION_NUMBER: string,
-  LINE_NUMBER: number
-) => {
+const getLineDetails = async (REQUISITION_ID: string, LINE_NUMBER: number) => {
   try {
     const response = await axios.post("/purchase/requisition/getlinedetails", {
-      REQUISITION_NUMBER: REQUISITION_NUMBER,
+      REQUISITION_ID: REQUISITION_ID,
       LINE_NUMBER: LINE_NUMBER,
     });
     return response.data;

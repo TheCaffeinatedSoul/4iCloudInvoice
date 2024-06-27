@@ -27,8 +27,8 @@ async function InvoiceDetails({
 }: {
   params: { INVOICE_NUMBER: string };
 }) {
-  const decodedInvoiceNumber = decodeURIComponent(params.INVOICE_NUMBER);
-  const invoiceData = await getDetailsByInvoiceNumber(decodedInvoiceNumber);
+  const decodedInvoiceId = decodeURIComponent(params.INVOICE_NUMBER);
+  const invoiceData = await getDetailsByInvoiceNumber(decodedInvoiceId);
 
   const headerCard = [
     { title: "Operating Unit", value: invoiceData[0]?.org_name },

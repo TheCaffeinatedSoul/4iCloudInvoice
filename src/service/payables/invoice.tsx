@@ -1,10 +1,10 @@
 import axios from "@/api/axios";
 import { searchPayload } from "@/types/types";
 
-const getDetailsByInvoiceNumber: any = async (INVOICE_NUMBER: string) => {
+const getDetailsByInvoiceNumber: any = async (INVOICE_ID: string) => {
   try {
     const response = await axios.post(`/payables/invoice/getdetails`, {
-      INVOICE_NUMBER: INVOICE_NUMBER,
+      INVOICE_ID: INVOICE_ID,
     });
     return response.data.data;
   } catch (error) {
@@ -35,10 +35,10 @@ const getInvoiceBySearch: any = async (
   }
 };
 
-const getLineDetails = async (INVOICE_NUMBER: string, LINE_NUMBER: number) => {
+const getLineDetails = async (INVOICE_ID: string, LINE_NUMBER: number) => {
   try {
     const response = await axios.post(`/payables/invoice/getlineinformation`, {
-      INVOICE_NUMBER: INVOICE_NUMBER,
+      INVOICE_ID: INVOICE_ID,
       LINE_NUMBER: LINE_NUMBER,
     });
     return response.data;

@@ -11,11 +11,9 @@ async function RequisitionDetails({
 }: {
   params: { REQUISITION_NUMBER: string };
 }) {
-  const decodedRequisitionNumber = decodeURIComponent(
-    params.REQUISITION_NUMBER
-  );
+  const decodedRequisitionId = decodeURIComponent(params.REQUISITION_NUMBER);
   const requisitionData = await getDetailsByRequisitionNumber(
-    decodedRequisitionNumber
+    decodedRequisitionId
   );
 
   const headerCard = [

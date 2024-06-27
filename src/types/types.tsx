@@ -53,6 +53,9 @@ type searchPayload = {
   TO_DATE?: string;
   TRANSACTION_NUMBER?: string;
   REQUISITION_NUMBER?: string;
+  PO_NUMBER?: string;
+  BUYER?: string;
+  APPROVAL_STATUS?: string;
 };
 
 export type {

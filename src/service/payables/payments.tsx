@@ -1,10 +1,10 @@
 import axios from "@/api/axios";
 import { searchPayload } from "@/types/types";
 
-const getChecksDetailsByCheckNumber: any = async (CHECK_NUMBER: string) => {
+const getChecksDetailsByCheckNumber: any = async (CHECK_ID: string) => {
   try {
     const response = await axios.post(`/payables/checks/getdetails`, {
-      CHECK_NUMBER: CHECK_NUMBER,
+      CHECK_ID: CHECK_ID,
     });
     return response.data.data;
   } catch (error) {

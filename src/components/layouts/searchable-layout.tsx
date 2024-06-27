@@ -36,6 +36,7 @@ const SearchableLayout = ({
   searchFunction,
   searchParams,
 }: SearchableLayoutProps) => {
+  const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState(false);
   const [searchData, setSearchData] = useState<searchPayload>(defaultValues);
   const [data, setData] = useState({
@@ -53,6 +54,7 @@ const SearchableLayout = ({
   };
 
   const handleSearch = async (data: searchPayload) => {
+    setLoading(true);
     setSearchData(data);
     try {
       setSearch(true);
@@ -70,6 +72,7 @@ const SearchableLayout = ({
     const response = await searchFunction(data, limit, page);
     if (response) {
       setData(response.data.data);
+      setLoading(false);
     }
   };
 
@@ -96,6 +99,7 @@ const SearchableLayout = ({
                 reset={handleRefresh}
                 defaultValues={defaultValues}
                 schema={schema}
+                loading={loading}
               />
             </Card>
           </AccordionContent>

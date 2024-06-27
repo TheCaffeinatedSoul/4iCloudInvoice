@@ -1,7 +1,6 @@
 "use client";
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header";
 import { ColumnDef, VisibilityState } from "@tanstack/react-table";
-import { format } from "date-fns";
 import Link from "next/link";
 import { z } from "zod";
 
@@ -14,11 +13,10 @@ export const initialVisibilityState: VisibilityState = {
   UOM: true,
   quantity: true,
   price: true,
-  "need-by": true,
-  "destination type": false,
-  requester: false,
-  organization: false,
-  location: false,
+  "list price": true,
+  "price type": false,
+  "secondary quantity": false,
+  "secondary UOM": false,
 };
 
 const columns: ColumnDef<z.infer<any>>[] = [
@@ -30,14 +28,14 @@ const columns: ColumnDef<z.infer<any>>[] = [
     ),
     cell: ({
       row: {
-        original: { line_num, requisition_header_id },
+        original: { line_num, po_header_id },
       },
     }) => {
-      const encodedRequisitionId = encodeURIComponent(requisition_header_id);
+      const encodedHeaderId = encodeURIComponent(po_header_id);
       return (
         <Link
           style={{ textDecoration: "underline", color: "blue" }}
-          href={`/purchase/requisition/${encodedRequisitionId}/${line_num}`}
+          href={`/purchase/purchase-order/${encodedHeaderId}/${line_num}`}
         >
           {line_num}
         </Link>
@@ -59,17 +57,17 @@ const columns: ColumnDef<z.infer<any>>[] = [
     ),
   },
   {
-    id: "category",
-    accessorKey: "category_segment",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Category" />
-    ),
-  },
-  {
     id: "description",
     accessorKey: "item_description",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Description" />
+    ),
+  },
+  {
+    id: "category",
+    accessorKey: "category",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Category" />
     ),
   },
   {
@@ -80,10 +78,10 @@ const columns: ColumnDef<z.infer<any>>[] = [
     ),
   },
   {
-    id: "quantity",
-    accessorKey: "quantity",
+    id: "list price",
+    accessorKey: "list_price_per_unit",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Quantity" />
+      <DataTableColumnHeader column={column} title="List Price" />
     ),
   },
   {
@@ -94,47 +92,31 @@ const columns: ColumnDef<z.infer<any>>[] = [
     ),
   },
   {
-    id: "need-by",
-    accessorKey: "need_by_date",
+    id: "quantity",
+    accessorKey: "quantity",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Need-By" />
-    ),
-    cell: ({
-      row: {
-        original: { need_by_date },
-      },
-    }) => {
-      if (!need_by_date) return "";
-      const date = need_by_date.split(" ")[0];
-      return format(date, "dd-MMM-yyyy");
-    },
-  },
-  {
-    id: "destination type",
-    accessorKey: "destination_type_code",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Destination Type" />
+      <DataTableColumnHeader column={column} title="Quantity" />
     ),
   },
   {
-    id: "requester",
-    accessorKey: "to_person_name",
+    id: "price type",
+    accessorKey: "price_type_lookup_code",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Requester" />
+      <DataTableColumnHeader column={column} title="Price Type" />
     ),
   },
   {
-    id: "organization",
-    accessorKey: "org_name",
+    id: "secondary quantity",
+    accessorKey: "secondary_quantity",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Organization" />
+      <DataTableColumnHeader column={column} title="Secondary Quantity" />
     ),
   },
   {
-    id: "location",
-    accessorKey: "deliver_to_location_code",
+    id: "secondary UOM",
+    accessorKey: "secondary_unit_of_measure",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Location" />
+      <DataTableColumnHeader column={column} title="Secondary UOM" />
     ),
   },
 ];

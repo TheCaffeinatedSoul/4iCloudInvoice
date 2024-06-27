@@ -100,13 +100,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     ),
     cell: ({
       row: {
-        original: { line_number, invoice_num },
+        original: { line_number, invoice_id },
       },
     }) => {
       return (
         <Link
           style={{ textDecoration: "underline", color: "blue" }}
-          href={`/payables/invoices/${invoice_num}/${line_number}`}
+          href={`/payables/invoices/${invoice_id}/${line_number}`}
         >
           {line_number}
         </Link>

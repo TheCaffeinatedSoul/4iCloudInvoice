@@ -1,32 +1,29 @@
 import SelectedLayout from "@/components/layouts/selected-layout";
-import { Card } from "@/components/ui/card";
 import { DataTable } from "@/components/ui/data-table";
-import { getLineDetails } from "@/service/payables/invoice";
+import { getLineDetails } from "@/service/purchase/purchase-order";
 import {
   columns,
   initialVisibilityState,
-} from "@/types/columndefs/payables/invoices/distributions";
+} from "@/types/columndefs/purchase/purchase-order/lines";
 
 const Line = async ({
   params,
 }: {
   params: {
-    INVOICE_NUMBER: string;
-    LINE_NUMBER: number;
+    PO_NUMBER: string;
+    LINE_NUMBER: string;
   };
 }) => {
-  const lineData = await getLineDetails(
-    params.INVOICE_NUMBER,
-    params.LINE_NUMBER
-  );
+  const lineData = await getLineDetails(params.PO_NUMBER, params.LINE_NUMBER);
 
   const cardHeader = [
-    { title: "Invoice Number", value: lineData.data[0]?.invoice_num },
+    { title: "PO Number", value: lineData?.data[0]?.po_number },
   ];
+
   return (
     <SelectedLayout
       title="Line"
-      backLink={`/payables/invoices/${params.INVOICE_NUMBER}`}
+      backLink={`/purchase/purchase-order/${params.PO_NUMBER}`}
       cardDetails={cardHeader}
     >
       <div className="px-2">
@@ -34,16 +31,17 @@ const Line = async ({
           <DataTable
             title="Distributions"
             data={{
-              data: lineData.data[0].ap_invoice_distributions_all,
-              pageCount: 1,
+              data: lineData?.data[0]?.po_lines_all,
+              pageCount:
+                lineData?.data[0].po_lines_all.length > 10
+                  ? Math.ceil(lineData?.data[0].po_lines_all.length / 10)
+                  : 1,
             }}
             columns={columns}
             initialVisibilityState={initialVisibilityState}
           />
         ) : (
-          <Card className="container flex justify-center items-center min-h-[30vh]">
-            No records found
-          </Card>
+          "No Data"
         )}
       </div>
     </SelectedLayout>

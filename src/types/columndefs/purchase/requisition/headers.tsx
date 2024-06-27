@@ -30,10 +30,10 @@ const columns: ColumnDef<z.infer<any>>[] = [
     ),
     cell: ({
       row: {
-        original: { requisition_number },
+        original: { requisition_number, requisition_header_id },
       },
     }) => {
-      const encodedInvoiceNumber = encodeURIComponent(requisition_number);
+      const encodedInvoiceNumber = encodeURIComponent(requisition_header_id);
       return (
         <Link
           style={{ textDecoration: "underline", color: "blue" }}

@@ -10,6 +10,9 @@ const searchSchema = z.object({
   TRANSACTION_NUMBER: z.string().optional(),
   CHECK_NUMBER: z.string().optional(),
   REQUISITION_NUMBER: z.string().optional(),
+  BUYER: z.string().optional(),
+  PO_NUMBER: z.string().optional(),
+  APPROVAL_STATUS: z.string().optional(),
 });
 
 export { searchSchema };

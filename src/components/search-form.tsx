@@ -12,6 +12,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { MdRefresh, MdSearch } from "react-icons/md";
+import { ImSpinner9 } from "react-icons/im";
 import { Button } from "@/components/ui/button";
 
 interface SearchFormProps {
@@ -19,6 +20,7 @@ interface SearchFormProps {
   search: (data: z.infer<any>) => void;
   defaultValues: any;
   schema: any;
+  loading: boolean;
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({
@@ -26,6 +28,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
   search,
   defaultValues,
   schema,
+  loading,
 }) => {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -84,8 +87,8 @@ const SearchForm: React.FC<SearchFormProps> = ({
         <Button
           variant={"outline"}
           className="flex justify-evenly items-center gap-2"
-          // onClick={form.handleSubmit(reset)}
           onClick={() => reset(() => form.reset())}
+          disabled={loading}
         >
           <MdRefresh />
           Refresh
@@ -93,9 +96,18 @@ const SearchForm: React.FC<SearchFormProps> = ({
         <Button
           className="flex justify-evenly items-center gap-2"
           onClick={form.handleSubmit(search)}
+          disabled={loading}
         >
-          Search
-          <MdSearch />
+          {loading ? (
+            <div className="animate-spin">
+              <ImSpinner9 />
+            </div>
+          ) : (
+            <div className="flex justify-evenly items-center gap-2">
+              Search
+              <MdSearch />
+            </div>
+          )}
         </Button>
       </div>
     </Form>
