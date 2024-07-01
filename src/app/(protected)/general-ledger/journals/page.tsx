@@ -1,16 +1,26 @@
 "use client";
 import SearchableLayout from "@/components/layouts/searchable-layout";
 import { searchSchema } from "@/schema/searchformschema";
-import { getInvoiceBySearch } from "@/service/payables/invoice";
+import { serverSideSearchParams } from "@/schema/serverside-pagination";
+import { getJournalsBySearch } from "@/service/general-ledger/journals";
 import {
   columns,
   initialVisibilityState,
-} from "@/types/columndefs/payables/invoices/invoice-headers";
+} from "@/types/columndefs/general-ledger/journals/batches";
+import { z } from "zod";
+
+type JournalProps = {
+  searchParams: z.infer<typeof serverSideSearchParams>;
+};
 
 const defaultValues = {
   ORGANIZATION: "",
+  JOURNAL_NAME: "",
+  LEDGER: "",
+  FROM_DATE: "",
+  TO_DATE: "",
 };
-const Journals = ({ searchParams }: any) => {
+const Journals = ({ searchParams }: JournalProps) => {
   return (
     <SearchableLayout
       title="Journals"
@@ -18,7 +28,7 @@ const Journals = ({ searchParams }: any) => {
       defaultValues={defaultValues}
       initialVisibilityState={initialVisibilityState}
       schema={searchSchema}
-      searchFunction={getInvoiceBySearch}
+      searchFunction={getJournalsBySearch}
       searchParams={searchParams}
     />
   );
