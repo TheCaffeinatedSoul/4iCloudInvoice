@@ -21,7 +21,7 @@ async function ReceiptDetails({
   return (
     <SelectedLayout
       title="Receipt"
-      backLink="/receivabled/receipts"
+      backLink="/receivables/receipts"
       cardDetails={cardDetails}
     >
       <div className="px-2">

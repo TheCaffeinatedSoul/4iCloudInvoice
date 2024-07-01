@@ -13,6 +13,7 @@ const searchSchema = z.object({
   BUYER: z.string().optional(),
   PO_NUMBER: z.string().optional(),
   APPROVAL_STATUS: z.string().optional(),
+  BANK_NAME: z.string().optional(),
 });
 
 export { searchSchema };
