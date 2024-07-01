@@ -13,6 +13,8 @@ export const initialVisibilityState: VisibilityState = {
   date: true,
   "GL date": true,
   "due date": true,
+  "document number": true,
+  "legal entity": true,
   "bill to contact": true,
   source: true,
   "sold to name": true,
@@ -50,14 +52,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     ),
     cell: ({
       row: {
-        original: { trx_number },
+        original: { trx_number, customer_trx_id },
       },
     }) => {
-      const encodedInvoiceNumber = encodeURIComponent(trx_number);
       return (
         <Link
           style={{ textDecoration: "underline", color: "blue" }}
-          href={`/receivables/invoices/${encodedInvoiceNumber}`}
+          href={`/receivables/invoices/${customer_trx_id}`}
         >
           {trx_number}
         </Link>
@@ -118,6 +119,20 @@ const columns: ColumnDef<z.infer<any>>[] = [
       const date = due_date.split(" ")[0];
       return format(date, "dd-MMM-yyyy");
     },
+  },
+  {
+    id: "document number",
+    accessorKey: "document_number",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Document Number" />
+    ),
+  },
+  {
+    id: "legal entity",
+    accessorKey: "legal_entity",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Legal Entity" />
+    ),
   },
   {
     id: "bill to contact",

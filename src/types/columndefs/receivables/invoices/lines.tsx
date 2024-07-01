@@ -6,7 +6,23 @@ import { format } from "date-fns";
 import Link from "next/link";
 import { z } from "zod";
 
-export const initialVisibilityState: VisibilityState = {};
+export const initialVisibilityState: VisibilityState = {
+  "line number": true,
+  item: true,
+  description: true,
+  UOM: true,
+  quantity: true,
+  "unit price": true,
+  amount: true,
+  revision: false,
+  date: true,
+  "customer name": true,
+  "customer number": true,
+  contact: true,
+  address: true,
+  "tax classificiation": true,
+  channel: false,
+};
 
 const columns: ColumnDef<z.infer<any>>[] = [
   {
@@ -17,18 +33,25 @@ const columns: ColumnDef<z.infer<any>>[] = [
     ),
     cell: ({
       row: {
-        original: { line_number },
+        original: { line_number, customer_trx_id },
       },
     }) => {
       return (
         <Link
           style={{ textDecoration: "underline", color: "blue" }}
-          href={`/receivables/invoices/${line_number}`}
+          href={`/receivables/invoices/${customer_trx_id}/${line_number}`}
         >
           {line_number}
         </Link>
       );
     },
+  },
+  {
+    id: "item",
+    accessorKey: "inventory_item_code",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Item" />
+    ),
   },
   {
     id: "description",
@@ -38,10 +61,10 @@ const columns: ColumnDef<z.infer<any>>[] = [
     ),
   },
   {
-    id: "item",
-    accessorKey: "inventory_item_code",
+    id: "UOM",
+    accessorKey: "uom_code",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Item" />
+      <DataTableColumnHeader column={column} title="UOM" />
     ),
   },
   {
@@ -56,6 +79,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     accessorKey: "unit_standard_price",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Unit Price" />
+    ),
+  },
+  {
+    id: "amount",
+    accessorKey: "extended_amount",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Amount" />
     ),
   },
   {
@@ -80,20 +110,6 @@ const columns: ColumnDef<z.infer<any>>[] = [
       const date = sales_order_date.split(" ")[0];
       return format(date, "dd-MMM-yyyy");
     },
-  },
-  {
-    id: "amount",
-    accessorKey: "extended_amount",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Amount" />
-    ),
-  },
-  {
-    id: "UOM",
-    accessorKey: "uom_code",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="UOM" />
-    ),
   },
   {
     id: "customer name",

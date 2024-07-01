@@ -34,4 +34,17 @@ const getTransactionDetails: any = async (TRANSACTION_NUMBER: string) => {
   }
 };
 
-export { getInvoiceBySearch, getTransactionDetails };
+const getLineDetails = async (CUSTOMER_TRX_ID: string, LINE_NUMBER: number) => {
+  try {
+    const response = await axios.post(`/receivables/invoice/getlinedetails`, {
+      CUSTOMER_TRX_ID: CUSTOMER_TRX_ID,
+      LINE_NUMBER: LINE_NUMBER,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error getting line details: ", error);
+    throw error;
+  }
+};
+
+export { getInvoiceBySearch, getTransactionDetails, getLineDetails };
