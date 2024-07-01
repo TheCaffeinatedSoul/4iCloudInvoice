@@ -53,4 +53,28 @@ const getLineDetails = async (PO_HEADER_ID: string, LINE_NUMBER: string) => {
   }
 };
 
-export { getPOBySearch, getDetailsByPONumber, getLineDetails };
+const getLineLocationDetails = async (
+  PO_HEADER_ID: string,
+  LINE_LOCATION_ID: string
+) => {
+  try {
+    const response = await axios.post(
+      `/purchase/purchaseorder/getlinelocationdetails`,
+      {
+        PO_HEADER_ID: PO_HEADER_ID,
+        LINE_LOCATION_ID: LINE_LOCATION_ID,
+      }
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error("Error getting line location details: ", error);
+    throw error;
+  }
+};
+
+export {
+  getPOBySearch,
+  getDetailsByPONumber,
+  getLineDetails,
+  getLineLocationDetails,
+};

@@ -1,12 +1,13 @@
 import SelectedLayout from "@/components/layouts/selected-layout";
+import { Card } from "@/components/ui/card";
 import { DataTable } from "@/components/ui/data-table";
 import { getLineDetails } from "@/service/purchase/purchase-order";
 import {
   columns,
   initialVisibilityState,
-} from "@/types/columndefs/purchase/purchase-order/lines";
+} from "@/types/columndefs/purchase/purchase-order/line-locations";
 
-const Line = async ({
+const POLine = async ({
   params,
 }: {
   params: {
@@ -29,23 +30,27 @@ const Line = async ({
       <div className="px-2">
         {lineData ? (
           <DataTable
-            title="Distributions"
+            title="Line Locations"
             data={{
-              data: lineData?.data[0]?.po_lines_all,
+              data: lineData?.data[0]?.po_lines_locations_all,
               pageCount:
-                lineData?.data[0].po_lines_all.length > 10
-                  ? Math.ceil(lineData?.data[0].po_lines_all.length / 10)
+                lineData?.data[0].po_lines_locations_all.length > 10
+                  ? Math.ceil(
+                      lineData?.data[0].po_lines_locations_all.length / 10
+                    )
                   : 1,
             }}
             columns={columns}
             initialVisibilityState={initialVisibilityState}
           />
         ) : (
-          "No Data"
+          <Card className="container flex justify-center items-center min-h-[30vh]">
+            No records found
+          </Card>
         )}
       </div>
     </SelectedLayout>
   );
 };
 
-export default Line;
+export default POLine;

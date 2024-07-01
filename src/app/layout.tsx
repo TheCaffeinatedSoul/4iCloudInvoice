@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Invoice App",
+  title: "EBS Archive Solution",
   description: "4i Apps Solutions Pvt. Ltd",
   icons: {
     icon: "/4i Logo.svg",

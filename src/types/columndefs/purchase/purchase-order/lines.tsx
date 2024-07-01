@@ -31,11 +31,10 @@ const columns: ColumnDef<z.infer<any>>[] = [
         original: { line_num, po_header_id },
       },
     }) => {
-      const encodedHeaderId = encodeURIComponent(po_header_id);
       return (
         <Link
           style={{ textDecoration: "underline", color: "blue" }}
-          href={`/purchase/purchase-order/${encodedHeaderId}/${line_num}`}
+          href={`/purchase/purchase-order/${po_header_id}/${line_num}`}
         >
           {line_num}
         </Link>

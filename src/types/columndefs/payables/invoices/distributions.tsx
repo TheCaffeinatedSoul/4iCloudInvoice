@@ -5,9 +5,8 @@ import { format } from "date-fns";
 import { z } from "zod";
 
 export const initialVisibilityState: VisibilityState = {
-  "#": true,
+  "line number": true,
   "gl date": true,
-  "line number": false,
   "line type": false,
   amount: false,
   "functional amount": false,
@@ -44,14 +43,11 @@ export const initialVisibilityState: VisibilityState = {
 
 const columns: ColumnDef<z.infer<any>>[] = [
   {
-    id: "#",
-    header: "S.No",
-    cell: ({ row: { index }, table: { getState } }) => {
-      const {
-        pagination: { pageIndex, pageSize },
-      } = getState();
-      return pageIndex * pageSize + index + 1;
-    },
+    id: "line number",
+    accessorKey: "distribution_line_number",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Number" />
+    ),
   },
   {
     id: "gl date",
@@ -68,13 +64,6 @@ const columns: ColumnDef<z.infer<any>>[] = [
       const date = accounting_date.split(" ")[0];
       return format(date, "dd-MMM-yyyy");
     },
-  },
-  {
-    id: "line number",
-    accessorKey: "distribution_line_number",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Number" />
-    ),
   },
   {
     id: "line type",
