@@ -47,7 +47,9 @@ async function InvoiceDetails({
             title="Lines"
           />
         ) : (
-          <Card>No Records Found</Card>
+          <Card className="container flex justify-center items-center min-h-[30vh]">
+            No records found
+          </Card>
         )}
       </div>
     </SelectedLayout>

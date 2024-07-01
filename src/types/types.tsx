@@ -56,6 +56,7 @@ type searchPayload = {
   PO_NUMBER?: string;
   BUYER?: string;
   APPROVAL_STATUS?: string;
+  BANK_NAME?: string;
 };
 
 export type {
