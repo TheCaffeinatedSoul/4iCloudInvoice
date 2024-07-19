@@ -14,11 +14,13 @@ type JournalProps = {
 };
 
 const defaultValues = {
-  ORGANIZATION: "",
-  JOURNAL_NAME: "",
+  BATCH_NAME: "",
+  SOURCE: "",
   LEDGER: "",
+  JOURNAL_NAME: "",
   FROM_DATE: "",
   TO_DATE: "",
+  PERIOD_NAME: "",
 };
 const Journals = ({ searchParams }: JournalProps) => {
   return (

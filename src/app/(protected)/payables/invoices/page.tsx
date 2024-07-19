@@ -14,12 +14,13 @@ type InvoiceProps = {
 };
 
 const defaultValues: z.infer<typeof searchSchema> = {
-  ORGANIZATION: "",
   INVOICE_NUMBER: "",
+  INVOICE_TYPE: "",
   SUPPLIER_NUMBER: "",
   SUPPLIER_NAME: "",
   FROM_DATE: "",
   TO_DATE: "",
+  ORGANIZATION: "",
 };
 
 const Invoices = ({ searchParams }: InvoiceProps) => {

@@ -1,3 +1,10 @@
+import { serverSideSearchParams } from "@/schema/serverside-pagination";
+import { z } from "zod";
+
+export type T_SearchParamsProps = {
+  searchParams: z.infer<typeof serverSideSearchParams>;
+};
+
 type invoiceData = {
   invoice_number: string;
   invoice_date: string;
@@ -46,6 +53,7 @@ type locationData = {
 type searchPayload = {
   ORGANIZATION?: string;
   INVOICE_NUMBER?: string;
+  INVOICE_TYPE?: string;
   CHECK_NUMBER?: string;
   SUPPLIER_NUMBER?: string;
   SUPPLIER_NAME?: string;
@@ -57,6 +65,8 @@ type searchPayload = {
   BUYER?: string;
   APPROVAL_STATUS?: string;
   BANK_NAME?: string;
+  ASSET_NUMBER?: string;
+  RECEIPT_NUMBER?: string;
 };
 
 export type {

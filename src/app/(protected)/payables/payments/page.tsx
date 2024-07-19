@@ -14,12 +14,12 @@ type PaymentProps = {
 };
 
 const defaultValues: z.infer<typeof searchSchema> = {
-  ORGANIZATION: "",
-  CHECK_NUMBER: "",
-  SUPPLIER_NUMBER: "",
-  SUPPLIER_NAME: "",
-  FROM_DATE: "",
-  TO_DATE: "",
+  ORGANIZATION:'',
+  DOCUMENT_NUMBER:'',
+  SUPPLIER_NUMBER:'',
+  SUPPLIER_NAME:'',
+  FROM_DATE:'',
+  TO_DATE:''
 };
 
 const Payments = ({ searchParams }: PaymentProps) => {

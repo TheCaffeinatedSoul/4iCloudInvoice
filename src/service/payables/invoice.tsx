@@ -23,6 +23,7 @@ const getInvoiceBySearch: any = async (
       {
         ORGANIZATION: data.ORGANIZATION,
         INVOICE_NUMBER: data.INVOICE_NUMBER,
+        INVOICE_TYPE: data.INVOICE_TYPE,
         SUPPLIER_NUMBER: data.SUPPLIER_NUMBER,
         SUPPLIER_NAME: data.SUPPLIER_NAME,
         FROM_DATE: data.FROM_DATE,

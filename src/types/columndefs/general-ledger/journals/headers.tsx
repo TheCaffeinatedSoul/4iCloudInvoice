@@ -16,20 +16,20 @@ const columns: ColumnDef<z.infer<any>>[] = [
       return <div className="flex items-center">{row.index + 1}</div>;
     },
   },
-  {
-    id: "name",
-    accessorKey: "ledger_name",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Name" />
-    ),
-  },
-  {
-    id: "description",
-    accessorKey: "ledger_description",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Document Number" />
-    ),
-  },
+  // {
+  //   id: "name",
+  //   accessorKey: "ledger_name",
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader column={column} title="Name" />
+  //   ),
+  // },
+  // {
+  //   id: "description",
+  //   accessorKey: "ledger_description",
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader column={column} title="Document Number" />
+  //   ),
+  // },
   {
     id: "category",
     accessorKey: "je_category",

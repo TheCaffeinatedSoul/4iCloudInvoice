@@ -2,6 +2,8 @@
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header";
 import { ColumnDef, VisibilityState } from "@tanstack/react-table";
 import { format } from "date-fns";
+import Link from "next/link";
+import { FaEye } from "react-icons/fa";
 import { z } from "zod";
 
 export const initialVisibilityState: VisibilityState = {};
@@ -15,24 +17,37 @@ const columns: ColumnDef<z.infer<any>>[] = [
     },
   },
   {
+    id: "view",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="View" />
+    ),
+    cell: ({
+      row: {
+        original: { request_id },
+      },
+    }) => {
+      return (
+        <Link
+          style={{ textDecoration: "underline", color: "blue" }}
+          href={`/general-ledger/batches/${request_id}`}
+        >
+          <FaEye />
+        </Link>
+      );
+    },
+  },
+  {
     id: "name",
-    accessorKey: "je_header_name",
+    accessorKey: "je_batch_name",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Name" />
     ),
   },
   {
     id: "description",
-    accessorKey: "je_description",
+    accessorKey: "je_batch_description",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Description" />
-    ),
-  },
-  {
-    id: "ledger",
-    accessorKey: "ledger_name",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Ledger" />
     ),
   },
   {

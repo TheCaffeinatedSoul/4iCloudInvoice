@@ -14,6 +14,15 @@ import { Input } from "@/components/ui/input";
 import { MdRefresh, MdSearch } from "react-icons/md";
 import { ImSpinner9 } from "react-icons/im";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
+import { periods } from "@/constants/periods";
 
 interface SearchFormProps {
   reset: (data: z.infer<any>) => void;
@@ -69,13 +78,34 @@ const SearchForm: React.FC<SearchFormProps> = ({
                     key.includes("DATE") ? "justify-center w-fit md:w-full" : ""
                   }`}
                 >
-                  <Input
-                    {...field}
-                    placeholder={`Enter ${key
-                      .replace(/_/g, " ")
-                      .toLowerCase()}`}
-                    type={key.includes("DATE") ? "date" : "text"}
-                  />
+                  {key.includes("PERIOD_NAME") ? (
+                    <Select>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Period" />
+                      </SelectTrigger>
+                      <SelectContent align="start">
+                        <SelectGroup>
+                          {periods.map((period) => (
+                            <SelectItem
+                              value={period.value}
+                              key={period.value}
+                              className="items-start"
+                            >
+                              {period.name}
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  ) : (
+                    <Input
+                      {...field}
+                      placeholder={`Enter ${key
+                        .replace(/_/g, " ")
+                        .toLowerCase()}`}
+                      type={key.includes("DATE") ? "date" : "text"}
+                    />
+                  )}
                 </FormControl>
                 <FormMessage />
               </FormItem>

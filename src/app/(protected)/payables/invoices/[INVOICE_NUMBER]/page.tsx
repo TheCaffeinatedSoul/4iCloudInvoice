@@ -1,7 +1,5 @@
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Link from "next/link";
-import { FaChevronLeft } from "react-icons/fa6";
 import { RiXrpLine } from "react-icons/ri";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import { BsCreditCard } from "react-icons/bs";

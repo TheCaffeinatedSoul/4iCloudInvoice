@@ -19,7 +19,7 @@ async function CheckDetails({ params }: { params: { CHECK_NUMBER: string } }) {
         <Link href={"/payables/payments"}>
           <FaChevronLeft className="cursor-pointer" />
         </Link>
-        <div className="font-bold">Checks</div>
+        <div className="font-bold">Payments</div>
       </div>
       <Card className="grid grid-cols-3 md:grid-cols-4 justify-evenly m-4 p-4 gap-4 text-sm bg-[#FFF6D7] border-none shadow-none">
         <div>
@@ -47,7 +47,7 @@ async function CheckDetails({ params }: { params: { CHECK_NUMBER: string } }) {
       </Card>
       <div className="px-4">
         <DataTable
-          title="Payments"
+          title="Invoice Details"
           data={{
             data: checkData[0]?.ap_invoice_payments_all,
             pageCount:
