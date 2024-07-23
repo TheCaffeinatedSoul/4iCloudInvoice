@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ColumnDef, VisibilityState } from "@tanstack/react-table";
 import { format } from "date-fns";
 import Link from "next/link";
+import { FaEye } from "react-icons/fa";
 import { z } from "zod";
 
 export const initialVisibilityState: VisibilityState = {};
@@ -16,20 +17,40 @@ const columns: ColumnDef<z.infer<any>>[] = [
       return <div className="flex items-center">{row.index + 1}</div>;
     },
   },
-  // {
-  //   id: "name",
-  //   accessorKey: "ledger_name",
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader column={column} title="Name" />
-  //   ),
-  // },
-  // {
-  //   id: "description",
-  //   accessorKey: "ledger_description",
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader column={column} title="Document Number" />
-  //   ),
-  // },
+  {
+    id: "view",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="View" />
+    ),
+    cell: ({
+      row: {
+        original: { je_batch_id, je_header_id },
+      },
+    }) => {
+      return (
+        <Link
+          style={{ textDecoration: "underline", color: "blue" }}
+          href={`/general-ledger/journals/${je_batch_id}/${je_header_id}`}
+        >
+          <FaEye />
+        </Link>
+      );
+    },
+  },
+  {
+    id: "name",
+    accessorKey: "ledger_name",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Name" />
+    ),
+  },
+  {
+    id: "description",
+    accessorKey: "ledger_description",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Document Number" />
+    ),
+  },
   {
     id: "category",
     accessorKey: "je_category",
@@ -66,10 +87,10 @@ const columns: ColumnDef<z.infer<any>>[] = [
     ),
   },
   {
-    id: "posting",
-    accessorKey: "status",
+    id: "posting status",
+    accessorKey: "status_meaning",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Posting" />
+      <DataTableColumnHeader column={column} title="Posting Status" />
     ),
   },
   {
@@ -89,10 +110,10 @@ const columns: ColumnDef<z.infer<any>>[] = [
     },
   },
   {
-    id: "date (reverse)",
+    id: "reversal date",
     accessorKey: "accrual_rev_effective_date",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Date (Reverse)" />
+      <DataTableColumnHeader column={column} title="Reversal Date" />
     ),
     cell: ({
       row: {
@@ -105,17 +126,17 @@ const columns: ColumnDef<z.infer<any>>[] = [
     },
   },
   {
-    id: "period (reverse)",
+    id: "reversal period",
     accessorKey: "accrual_rev_period_name",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Period (Reverse)" />
+      <DataTableColumnHeader column={column} title="Reversal Period" />
     ),
   },
   {
-    id: "status (reverse)",
+    id: "reversal status",
     accessorKey: "accrual_rev_status",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Status (Reverse)" />
+      <DataTableColumnHeader column={column} title="Reversal Status" />
     ),
   },
   {
@@ -124,6 +145,101 @@ const columns: ColumnDef<z.infer<any>>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Control Total" />
     ),
+  },
+  {
+    id: "debit",
+    accessorKey: "running_total_dr",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Debit" />
+    ),
+  },
+  {
+    id: "credit",
+    accessorKey: "running_total_cr",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Credit" />
+    ),
+  },
+  {
+    id: "accounted debit",
+    accessorKey: "running_total_accounted_dr",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Accounted Debit" />
+    ),
+  },
+  {
+    id: "accounted credit",
+    accessorKey: "running_total_accounted_cr",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Accounted Credit" />
+    ),
+  },
+  {
+    id: "converstion rate",
+    accessorKey: "currency_conversion_rate",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Conversion Rate" />
+    ),
+  },
+  {
+    id: "conversion type",
+    accessorKey: "currency_conversion_type",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Conversion Type" />
+    ),
+  },
+  {
+    id: "conversion date",
+    accessorKey: "currency_conversion_date",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Conversion Date" />
+    ),
+    cell: ({
+      row: {
+        original: { currency_conversion_date },
+      },
+    }) => {
+      if (!currency_conversion_date) return "";
+      const date = currency_conversion_date.split(" ")[0];
+      return format(date, "dd-MMM-yyyy");
+    },
+  },
+  {
+    id: "reference",
+    accessorKey: "external_reference",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Reference" />
+    ),
+  },
+  {
+    id: "reconciliation reference",
+    accessorKey: "jgzz_recon_ref",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Reconciliation Reference" />
+    ),
+  },
+  {
+    id: "clearing company",
+    accessorKey: "originating_bal_seg_value",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Clearing Company" />
+    ),
+  },
+  {
+    id: "reference date",
+    accessorKey: "reference_date",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Reference Date" />
+    ),
+    cell: ({
+      row: {
+        original: { reference_date },
+      },
+    }) => {
+      if (!reference_date) return "";
+      const date = reference_date.split(" ")[0];
+      return format(date, "dd-MMM-yyyy");
+    },
   },
 ];
 

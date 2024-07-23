@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ColumnDef, VisibilityState } from "@tanstack/react-table";
 import { format } from "date-fns";
 import Link from "next/link";
+import { FaEye } from "react-icons/fa";
 import { z } from "zod";
 
 export const initialVisibilityState: VisibilityState = {
@@ -33,26 +34,31 @@ const columns: ColumnDef<z.infer<any>>[] = [
     },
   },
   {
+    id: "view",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="View" />
+    ),
+    cell: ({
+      row: {
+        original: { po_header_id },
+      },
+    }) => {
+      return (
+        <Link
+          style={{ textDecoration: "underline", color: "blue" }}
+          href={`/purchase/purchase-order/${po_header_id}`}
+        >
+          <FaEye />
+        </Link>
+      );
+    },
+  },
+  {
     id: "PO number",
     accessorKey: "po_number",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="PO Number" />
     ),
-    cell: ({
-      row: {
-        original: { po_number, po_header_id },
-      },
-    }) => {
-      const encodedPOHeaderId = encodeURIComponent(po_header_id);
-      return (
-        <Link
-          style={{ textDecoration: "underline", color: "blue" }}
-          href={`/purchase/purchase-order/${encodedPOHeaderId}`}
-        >
-          {po_number}
-        </Link>
-      );
-    },
   },
   {
     id: "buyer",

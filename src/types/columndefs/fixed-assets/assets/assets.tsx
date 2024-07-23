@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ColumnDef, VisibilityState } from "@tanstack/react-table";
 import { format } from "date-fns";
 import Link from "next/link";
+import { FaEye } from "react-icons/fa";
 import { z } from "zod";
 
 export const initialVisibilityState: VisibilityState = {};
@@ -18,14 +19,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     },
   },
   {
-    id: "asset number",
-    accessorKey: "asset_number",
+    id: "view",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Asset Number" />
+      <DataTableColumnHeader column={column} title="View" />
     ),
     cell: ({
       row: {
-        original: { asset_number, asset_id },
+        original: { asset_id },
       },
     }) => {
       return (
@@ -33,10 +33,17 @@ const columns: ColumnDef<z.infer<any>>[] = [
           style={{ textDecoration: "underline", color: "blue" }}
           href={`/fixed-assets/assets/${asset_id}`}
         >
-          {asset_number}
+          <FaEye />
         </Link>
       );
     },
+  },
+  {
+    id: "asset number",
+    accessorKey: "asset_number",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Asset Number" />
+    ),
   },
   {
     id: "description",

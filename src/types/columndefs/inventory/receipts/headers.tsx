@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ColumnDef, VisibilityState } from "@tanstack/react-table";
 import { format } from "date-fns";
 import Link from "next/link";
+import { FaEye } from "react-icons/fa";
 import { z } from "zod";
 
 export const initialVisibilityState: VisibilityState = {};
@@ -18,14 +19,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     },
   },
   {
-    id: "receipt number",
-    accessorKey: "RECEIPT_NUM",
+    id: "view",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Receipt Number" />
+      <DataTableColumnHeader column={column} title="View" />
     ),
     cell: ({
       row: {
-        original: { REQUEST_ID, RECEIPT_NUM },
+        original: { REQUEST_ID },
       },
     }) => {
       return (
@@ -33,10 +33,17 @@ const columns: ColumnDef<z.infer<any>>[] = [
           style={{ textDecoration: "underline", color: "blue" }}
           href={`/inventory/receipts/${REQUEST_ID}`}
         >
-          {RECEIPT_NUM}
+          <FaEye />
         </Link>
       );
     },
+  },
+  {
+    id: "receipt number",
+    accessorKey: "RECEIPT_NUM",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Receipt Number" />
+    ),
   },
   {
     id: "shipment number",

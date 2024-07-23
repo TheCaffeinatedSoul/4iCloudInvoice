@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ColumnDef, VisibilityState } from "@tanstack/react-table";
 import { format } from "date-fns";
 import Link from "next/link";
+import { FaEye } from "react-icons/fa";
 import { z } from "zod";
 
 export const initialVisibilityState: VisibilityState = {
@@ -24,10 +25,9 @@ export const initialVisibilityState: VisibilityState = {
 
 const columns: ColumnDef<z.infer<any>>[] = [
   {
-    id: "line number",
-    accessorKey: "po_line_number",
+    id: "view",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Line Number" />
+      <DataTableColumnHeader column={column} title="View" />
     ),
     cell: ({
       row: {
@@ -39,10 +39,17 @@ const columns: ColumnDef<z.infer<any>>[] = [
           style={{ textDecoration: "underline", color: "blue" }}
           href={`/purchase/purchase-order/${po_header_id}/${po_line_num}/${line_location_id}`}
         >
-          {po_line_num}
+          <FaEye />
         </Link>
       );
     },
+  },
+  {
+    id: "line number",
+    accessorKey: "po_line_num",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Line Number" />
+    ),
   },
   {
     id: "quantity",

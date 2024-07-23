@@ -146,9 +146,9 @@ export function getMenuList(pathname: string): Group[] {
           icon: ClipboardList,
           submenus: [
             {
-              href: "/order-management/orders",
-              label: "Orders",
-              active: pathname.includes("/order-management/orders"),
+              href: "/order-management/sales-orders",
+              label: "Sales Orders",
+              active: pathname.includes("/order-management/sales-orders"),
               icon: ClipboardPenLine,
             },
             {

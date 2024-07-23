@@ -20,4 +20,33 @@ const getJournalsBySearch: any = async (
   }
 };
 
-export { getJournalsBySearch };
+const getJournalById = async (BATCH_ID: string) => {
+  try {
+    const response = await axios.post(
+      `/generalledger/journals/getjournalbyid`,
+      {
+        BATCH_ID: BATCH_ID,
+      }
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error("Error getting details by receipt id: ", error);
+  }
+};
+
+const getLineDetails = async (BATCH_ID: string, HEADER_ID: string) => {
+  try {
+    const response = await axios.post(
+      `/generalledger/journals/getlinedetails`,
+      {
+        BATCH_ID: BATCH_ID,
+        HEADER_ID: HEADER_ID,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error getting line details: ", error);
+  }
+};
+
+export { getJournalsBySearch, getJournalById, getLineDetails };

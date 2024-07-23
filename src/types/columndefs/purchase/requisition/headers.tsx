@@ -2,6 +2,7 @@
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header";
 import { ColumnDef, VisibilityState } from "@tanstack/react-table";
 import Link from "next/link";
+import { FaEye } from "react-icons/fa";
 import { z } from "zod";
 
 export const initialVisibilityState: VisibilityState = {
@@ -23,26 +24,31 @@ const columns: ColumnDef<z.infer<any>>[] = [
     },
   },
   {
+    id: "view",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="View" />
+    ),
+    cell: ({
+      row: {
+        original: { requisition_header_id },
+      },
+    }) => {
+      return (
+        <Link
+          style={{ textDecoration: "underline", color: "blue" }}
+          href={`/purchase/requisition/${requisition_header_id}`}
+        >
+          <FaEye />
+        </Link>
+      );
+    },
+  },
+  {
     id: "requisition number",
     accessorKey: "requisition_number",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Requisition Number" />
     ),
-    cell: ({
-      row: {
-        original: { requisition_number, requisition_header_id },
-      },
-    }) => {
-      const encodedInvoiceNumber = encodeURIComponent(requisition_header_id);
-      return (
-        <Link
-          style={{ textDecoration: "underline", color: "blue" }}
-          href={`/purchase/requisition/${encodedInvoiceNumber}`}
-        >
-          {requisition_number}
-        </Link>
-      );
-    },
   },
   {
     id: "operating unit",

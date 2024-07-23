@@ -3,6 +3,7 @@ import { DataTableColumnHeader } from "@/components/ui/data-table-column-header"
 import { ColumnDef, VisibilityState } from "@tanstack/react-table";
 import { format } from "date-fns";
 import Link from "next/link";
+import { FaEye } from "react-icons/fa";
 import { z } from "zod";
 
 export const initialVisibilityState: VisibilityState = {
@@ -23,26 +24,31 @@ export const initialVisibilityState: VisibilityState = {
 
 const columns: ColumnDef<z.infer<any>>[] = [
   {
-    id: "line number",
-    accessorKey: "line_num",
+    id: "view",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Line Number" />
+      <DataTableColumnHeader column={column} title="View" />
     ),
     cell: ({
       row: {
         original: { line_num, requisition_header_id },
       },
     }) => {
-      const encodedRequisitionId = encodeURIComponent(requisition_header_id);
       return (
         <Link
           style={{ textDecoration: "underline", color: "blue" }}
-          href={`/purchase/requisition/${encodedRequisitionId}/${line_num}`}
+          href={`/purchase/requisition/${requisition_header_id}/${line_num}`}
         >
-          {line_num}
+          <FaEye />
         </Link>
       );
     },
+  },
+  {
+    id: "line number",
+    accessorKey: "line_num",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Line Number" />
+    ),
   },
   {
     id: "type",
