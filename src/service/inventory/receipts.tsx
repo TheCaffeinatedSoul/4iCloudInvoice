@@ -23,4 +23,27 @@ const getReceiptsBySearch = async (
   }
 };
 
-export { getReceiptsBySearch };
+const getReceiptDetails = async (RECEIPT_NUMBER: string) => {
+  try {
+    const response = await axios.post(`/inventory/receipts/getreceiptdetails`, {
+      RECEIPT_NUMBER: RECEIPT_NUMBER,
+    });
+    return response.data.data;
+  } catch (error) {
+    console.error("Error getting receipt details: ", error);
+  }
+};
+
+const getLineDetails = async (RECEIPT_NUMBER: string, LINE_ID: string) => {
+  try {
+    const response = await axios.post(`/inventory/receipts/getlinedetails`, {
+      RECEIPT_NUMBER: RECEIPT_NUMBER,
+      LINE_ID: LINE_ID,
+    });
+    return response.data.data;
+  } catch (error) {
+    console.error("Error getting line details: ", error);
+  }
+};
+
+export { getReceiptsBySearch, getReceiptDetails, getLineDetails };

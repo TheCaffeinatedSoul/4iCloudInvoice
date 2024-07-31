@@ -5,12 +5,35 @@ import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/general-ledger/journals/headers";
+import { Value } from "@radix-ui/react-select";
+import { format } from "date-fns";
+import { title } from "process";
 
 async function JournalDetails({ params }: { params: { BATCH_ID: string } }) {
   const journalData = await getJournalById(params.BATCH_ID);
 
   const headerCard = [
     { title: "Batch Name", value: journalData[0]?.je_batch_name },
+    {
+      title: "Batch Description",
+      value: journalData[0]?.je_batch_description,
+    },
+    {
+      title: "Accounted Period Type",
+      value: journalData[0]?.accounted_period_type,
+    },
+    {
+      title: "Effective date",
+      value: format(journalData[0]?.effective_date.split(" ")[0], "dd-mm-yyyy"),
+    },
+    {
+      title: "Period Set Name",
+      value: journalData[0]?.period_set_name,
+    },
+    {
+      title: "Budgetary Control Status",
+      value: journalData[0]?.budgetary_control_status_meaning,
+    },
   ];
 
   return (

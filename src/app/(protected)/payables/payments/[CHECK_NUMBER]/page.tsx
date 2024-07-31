@@ -1,3 +1,4 @@
+import SelectedLayout from "@/components/layouts/selected-layout";
 import { Card } from "@/components/ui/card";
 import { DataTable } from "@/components/ui/data-table";
 import { getChecksDetailsByCheckNumber } from "@/service/payables/payments";
@@ -13,53 +14,42 @@ async function CheckDetails({ params }: { params: { CHECK_NUMBER: string } }) {
   const decodedCheckNumber = decodeURIComponent(params.CHECK_NUMBER);
   const checkData = await getChecksDetailsByCheckNumber(decodedCheckNumber);
 
+  const headerCard = [
+    { title: "Operating Unit", value: checkData[0]?.org_name },
+    { title: "Check Number", value: checkData[0]?.check_number },
+    { title: "Supplier Number", value: checkData[0]?.vendor_number },
+    { title: "Supplier Name", value: checkData[0]?.vendor_name },
+    {
+      title: "Check Amount",
+      value: checkData[0]?.currency_code + " " + checkData[0]?.amount,
+    },
+    {
+      title: "Date",
+      value: format(checkData[0]?.check_date.split(" ")[0], "dd-MMM-yyyy"),
+    },
+  ];
+
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex items-center p-4 gap-2 border-b-2">
-        <Link href={"/payables/payments"}>
-          <FaChevronLeft className="cursor-pointer" />
-        </Link>
-        <div className="font-bold">Payments</div>
+    <SelectedLayout
+      title="Payment"
+      backLink="/payables/payments"
+      cardDetails={headerCard}
+    >
+      <div className="px-2">
+        {checkData ? (
+          <DataTable
+            title="Check Details"
+            data={{ data: checkData[0]?.ap_invoice_payments_all, pageCount: 1 }}
+            columns={columns}
+            initialVisibilityState={initialVisibilityState}
+          />
+        ) : (
+          <Card className="container flex justify-center items-center min-h-[30vh]">
+            No records found
+          </Card>
+        )}
       </div>
-      <Card className="grid grid-cols-3 md:grid-cols-4 justify-evenly m-4 p-4 gap-4 text-sm bg-[#FFF6D7] border-none shadow-none">
-        <div>
-          <div className="font-bold">Operating Unit</div>
-          <div>{checkData[0]?.org_name}</div>
-        </div>
-        <div>
-          <div className="font-bold">Check Number</div>
-          <div>{checkData[0]?.check_number}</div>
-        </div>
-        <div>
-          <div className="font-bold">Supplier Number</div>
-          <div>{checkData[0]?.vendor_number}</div>
-        </div>
-        <div>
-          <div className="font-bold">Supplier Name</div>
-          <div>{checkData[0]?.vendor_name}</div>
-        </div>
-        <div>
-          <div className="font-bold">Date</div>
-          <div>
-            {format(checkData[0]?.check_date.split(" ")[0], "dd-MMM-yyyy")}
-          </div>
-        </div>
-      </Card>
-      <div className="px-4">
-        <DataTable
-          title="Invoice Details"
-          data={{
-            data: checkData[0]?.ap_invoice_payments_all,
-            pageCount:
-              checkData[0]?.ap_invoice_payments_all?.length > 10
-                ? Math.ceil(checkData[0]?.ap_invoice_payments_all?.length / 10)
-                : 1,
-          }}
-          columns={columns}
-          initialVisibilityState={initialVisibilityState}
-        />
-      </div>
-    </div>
+    </SelectedLayout>
   );
 }
 

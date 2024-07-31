@@ -11,7 +11,9 @@ const getInvoiceBySearch: any = async (
       `/receivables/invoice/getinvoicebysearch?limit=${limit}&page=${page}`,
       {
         ORGANIZATION: data.ORGANIZATION,
-        TRANSACTION_NUMBER: data.TRANSACTION_NUMBER,
+        INVOICE_NUMBER: data.INVOICE_NUMBER,
+        INVOICE_CLASS: data.INVOICE_CLASS,
+        INVOICE_TYPE: data.INVOICE_TYPE,
         FROM_DATE: data.FROM_DATE,
         TO_DATE: data.TO_DATE,
       }

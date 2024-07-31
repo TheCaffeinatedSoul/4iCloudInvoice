@@ -14,6 +14,7 @@ const getRequisitionBySearch: any = async (
         REQUISITION_NUMBER: data.REQUISITION_NUMBER,
         FROM_DATE: data.FROM_DATE,
         TO_DATE: data.TO_DATE,
+        PREPARER: data.PREPARER,
       }
     );
     return response;

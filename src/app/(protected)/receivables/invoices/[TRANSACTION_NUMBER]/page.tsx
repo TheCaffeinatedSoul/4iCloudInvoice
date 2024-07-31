@@ -6,6 +6,7 @@ import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/receivables/invoices/lines";
+import { format } from "date-fns";
 
 async function InvoiceDetails({
   params,
@@ -20,7 +21,15 @@ async function InvoiceDetails({
   );
 
   const cardDetails = [
-    { title: "Transaction Number", value: decodedTransactionNumber },
+    { title: "Transaction Number", value: transactionDetails[0]?.trx_number },
+    { title: "Organization", value: transactionDetails[0]?.org_name },
+    { title: "Term", value: transactionDetails[0]?.term_name },
+    { title: "Source", value: transactionDetails[0]?.batch_source_name },
+    { title: "Invoice Type", value: transactionDetails[0]?.cust_trx_type_name },
+    {
+      title: "Date",
+      value: format(transactionDetails[0]?.trx_date, "dd-MMM-yyyy"),
+    },
   ];
 
   return (

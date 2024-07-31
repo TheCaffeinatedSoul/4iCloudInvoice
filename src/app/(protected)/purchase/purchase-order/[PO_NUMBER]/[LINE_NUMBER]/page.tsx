@@ -6,6 +6,7 @@ import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/purchase/purchase-order/line-locations";
+import { format } from "date-fns";
 
 const POLine = async ({
   params,
@@ -18,7 +19,21 @@ const POLine = async ({
   const lineData = await getLineDetails(params.PO_NUMBER, params.LINE_NUMBER);
 
   const cardHeader = [
+    { title: "Organization", value: lineData?.data[0].org_name },
+    { title: "Item", value: lineData?.data[0].item_description },
+    {
+      title: "Amount",
+      value: lineData?.data[0].amount,
+    },
+    {
+      title: "Unit Price",
+      value: lineData?.data[0].unit_price,
+    },
     { title: "PO Number", value: lineData?.data[0]?.po_number },
+    {
+      title: "Date",
+      value: format(lineData?.data[0]?.creation_date, "dd-MMM-yyyy"),
+    },
   ];
 
   return (

@@ -9,7 +9,9 @@ import {
 
 const defaultValues = {
   ORGANIZATION: "",
-  TRANSACTION_NUMBER: "",
+  INVOICE_NUMBER: "",
+  INVOICE_CLASS: "",
+  INVOICE_TYPE: "",
   FROM_DATE: "",
   TO_DATE: "",
 };

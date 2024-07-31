@@ -6,11 +6,24 @@ import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/inventory/move-orders/request-lines";
+import { format } from "date-fns";
 
 async function MoveOrderDetails({ params }: { params: { HEADER_ID: string } }) {
   const moveOrderData = await getMoveOrderDetails(params.HEADER_ID);
   const headerCard = [
     { title: "Organization Name", value: moveOrderData[0]?.ORGANIZATION_NAME },
+    {
+      title: "Status",
+      value: moveOrderData[0]?.header_status_meaning,
+    },
+    { title: "Receipt Number", value: moveOrderData[0]?.request_number },
+    {
+      title: "Date",
+      value: format(
+        moveOrderData[0]?.creation_date.split(" ")[0],
+        "dd-MMM-yyyy"
+      ),
+    },
   ];
 
   return (

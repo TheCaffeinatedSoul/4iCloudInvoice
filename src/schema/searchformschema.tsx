@@ -17,6 +17,8 @@ const searchSchema = z.object({
   BANK_NAME: z.string().optional(),
   ASSET_NUMBER: z.string().optional(),
   RECEIPT_NUMBER: z.string().optional(),
+  PROPERTY_TYPE: z.string().optional(),
+  PREPARER: z.string().optional(),
 });
 
 export { searchSchema };

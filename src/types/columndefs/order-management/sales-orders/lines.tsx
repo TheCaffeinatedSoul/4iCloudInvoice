@@ -19,28 +19,28 @@ const columns: ColumnDef<z.infer<any>>[] = [
   },
   {
     id: "ordered item",
-    accessorKey: "ordered_item",
+    accessorKey: "ORDERED_ITEM",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Ordered Item" />
     ),
   },
   {
     id: "quantity ordered",
-    accessorKey: "ordered_quantity",
+    accessorKey: "ORDERED_QUANTITY",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Quantity Ordered" />
     ),
   },
   {
     id: "UOM",
-    accessorKey: "order_quantity_uom",
+    accessorKey: "ORDER_QUANTITY_UOM",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="UOM" />
     ),
   },
   {
     id: "unit price",
-    accessorKey: "unit_selling_price",
+    accessorKey: "UNIT_SELLING_PRICE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Unit Price" />
     ),
@@ -61,60 +61,60 @@ const columns: ColumnDef<z.infer<any>>[] = [
   },
   {
     id: "request date",
-    accessorKey: "request_date",
+    accessorKey: "REQUEST_DATE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Request Date" />
     ),
     cell: ({
       row: {
-        original: { request_date },
+        original: { REQUEST_DATE },
       },
     }) => {
-      if (!request_date) return "";
-      const date = request_date.split(" ")[0];
+      if (!REQUEST_DATE) return "";
+      const date = REQUEST_DATE.split(" ")[0];
       return format(date, "dd-MMM-yyyy");
     },
   },
   {
     id: "schedule ship date",
-    accessorKey: "schedule_ship_date",
+    accessorKey: "SCHEDULE_SHIP_DATE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Schedule Ship Date" />
     ),
     cell: ({
       row: {
-        original: { schedule_ship_date },
+        original: { SCHEDULE_SHIP_DATE },
       },
     }) => {
-      if (!schedule_ship_date) return "";
-      const date = schedule_ship_date.split(" ")[0];
+      if (!SCHEDULE_SHIP_DATE) return "";
+      const date = SCHEDULE_SHIP_DATE.split(" ")[0];
       return format(date, "dd-MMM-yyyy");
     },
   },
   {
     id: "status",
-    accessorKey: "flow_status_code",
+    accessorKey: "FLOW_STATUS_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Status" />
     ),
   },
   {
     id: "line type",
-    accessorKey: "item_type_code",
+    accessorKey: "ITEM_TYPE_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Line Type" />
     ),
   },
   {
     id: "quantity cancelled",
-    accessorKey: "cancelled_quantity",
+    accessorKey: "CANCELLED_QUANTITY",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Quantity Cancelled" />
     ),
   },
   {
     id: "quantity shipped",
-    accessorKey: "shipped_quantity",
+    accessorKey: "SHIPPED_QUANTITY",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Quantity Shipped" />
     ),
@@ -135,28 +135,28 @@ const columns: ColumnDef<z.infer<any>>[] = [
   },
   {
     id: "salesrep",
-    accessorKey: "salesrep_name",
+    accessorKey: "SALESREP_NAME",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Salesrep" />
     ),
   },
   {
     id: "qty order source",
-    accessorKey: "order_source_name",
+    accessorKey: "ORDER_SOURCE_NAME",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Qty Order Source" />
     ),
   },
   {
     id: "order source reference",
-    accessorKey: "orig_sys_document_ref",
+    accessorKey: "ORIG_SYS_DOCUMENT_REF",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Order Source Reference" />
     ),
   },
   {
     id: "order source line reference",
-    accessorKey: "orig_sys_line_ref",
+    accessorKey: "ORIG_SYS_LINE_REF",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
@@ -173,21 +173,21 @@ const columns: ColumnDef<z.infer<any>>[] = [
   },
   {
     id: "pricing context",
-    accessorKey: "pricing_context",
+    accessorKey: "PRICING_CONTEXT",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Pricing Context" />
     ),
   },
   {
     id: "list price",
-    accessorKey: "unit_list_price",
+    accessorKey: "UNIT_LIST_PRICE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="List Price" />
     ),
   },
   {
     id: "price list",
-    accessorKey: "price_list_name",
+    accessorKey: "PRICE_LIST_NAME",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Price List" />
     ),
@@ -201,215 +201,215 @@ const columns: ColumnDef<z.infer<any>>[] = [
   },
   {
     id: "tax amount",
-    accessorKey: "tax_value",
+    accessorKey: "TAX_VALUE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Tax Amount" />
     ),
   },
   {
     id: "calculate price flag",
-    accessorKey: "calculate_price_flag",
+    accessorKey: "CALCULATE_PRICE_FLAG",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Calculate Price Flag" />
     ),
   },
   {
     id: "payment terms",
-    accessorKey: "payment_terms",
+    accessorKey: "PAYMENT_TERMS",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Payment Terms" />
     ),
   },
   {
     id: "agreement",
-    accessorKey: "agreement_name",
+    accessorKey: "AGREEMENT_NAME",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Agreement" />
     ),
   },
   {
     id: "pricing UOM",
-    accessorKey: "pricing_quantity_uom",
+    accessorKey: "PRICING_QUANTITY_UOM",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Pricing UOM" />
     ),
   },
   {
     id: "pricing date",
-    accessorKey: "pricing_quantity",
+    accessorKey: "PRICING_QUANTITY",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Pricing Date" />
     ),
   },
   {
     id: "ship to customer",
-    accessorKey: "ship_to_customer",
+    accessorKey: "SHIP_TO_CUSTOMER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Ship To Customer" />
     ),
   },
   {
     id: "ship to",
-    accessorKey: "ship_to",
+    accessorKey: "SHIP_TO",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Ship To" />
     ),
   },
   {
     id: "ship to contact",
-    accessorKey: "ship_to_contact",
+    accessorKey: "SHIP_TO_CONTACT",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Ship To Contact" />
     ),
   },
   {
     id: "bill to customer",
-    accessorKey: "bill_to_customer",
+    accessorKey: "BILL_TO_CUSTOMER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Bill To Customer" />
     ),
   },
   {
     id: "bill to",
-    accessorKey: "bill_to",
+    accessorKey: "BILL_TO",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Bill To" />
     ),
   },
   {
     id: "bill to contact",
-    accessorKey: "bill_to_contact",
+    accessorKey: "BILL_TO_CONTACT",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Bill To Contact" />
     ),
   },
   {
     id: "ship to address 1",
-    accessorKey: "ship_to_address_1",
+    accessorKey: "SHIP_TO_ADDRESS_1",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Ship To Address 1" />
     ),
   },
   {
     id: "ship to address 2",
-    accessorKey: "ship_to_address_2",
+    accessorKey: "SHIP_TO_ADDRESS_2",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Ship To Address 2" />
     ),
   },
   {
     id: "ship to address 3",
-    accessorKey: "ship_to_address_3",
+    accessorKey: "SHIP_TO_ADDRESS_3",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Ship To Address 3" />
     ),
   },
   {
     id: "ship to address 5",
-    accessorKey: "ship_to_address_5",
+    accessorKey: "SHIP_TO_ADDRESS_5",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Ship To Address 5" />
     ),
   },
   {
     id: "bill to address 1",
-    accessorKey: "bill_to_address_1",
+    accessorKey: "BILL_TO_ADDRESS_1",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Bill To Address 1" />
     ),
   },
   {
     id: "bill to address 2",
-    accessorKey: "bill_to_address_2",
+    accessorKey: "BILL_TO_ADDRESS_2",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Bill To Address 2" />
     ),
   },
   {
     id: "bill to address 3",
-    accessorKey: "bill_to_address_3",
+    accessorKey: "BILL_TO_ADDRESS_3",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Bill To Address 3" />
     ),
   },
   {
     id: "bill to address 5",
-    accessorKey: "bill_to_address_5",
+    accessorKey: "BILL_TO_ADDRESS_5",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Bill To Address 5" />
     ),
   },
   {
     id: "deliver to location",
-    accessorKey: "deliver_to_location",
+    accessorKey: "DELIVER_TO_LOCATION",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Deliver To Location" />
     ),
   },
   {
     id: "deliver to contact",
-    accessorKey: "deliver_to_contact",
+    accessorKey: "DELIVER_TO_CONTACT",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Deliver To Contact" />
     ),
   },
   {
     id: "warehouse",
-    accessorKey: "ship_from_org_name",
+    accessorKey: "SHIP_FROM_ORG_NAME",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Warehouse" />
     ),
   },
   {
     id: "Receiving Org",
-    accessorKey: "ship_to_org_id",
+    accessorKey: "SHIP_TO_ORG_ID",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Receiving Org" />
     ),
   },
   {
     id: "source type",
-    accessorKey: "source_type_code",
+    accessorKey: "SOURCE_TYPE_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Source Type" />
     ),
   },
   {
     id: "document number",
-    accessorKey: "check_number",
+    accessorKey: "CHECK_NUMBER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Document Number" />
     ),
   },
   {
     id: "schedule arrival date",
-    accessorKey: "schedule_arrival_date",
+    accessorKey: "SCHEDULE_ARRIVAL_DATE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Schedule Arrival Date" />
     ),
     cell: ({
       row: {
-        original: { schedule_arrival_date },
+        original: { SCHEDULE_ARRIVAL_DATE },
       },
     }) => {
-      if (!schedule_arrival_date) return "";
-      const date = schedule_arrival_date.split(" ")[0];
+      if (!SCHEDULE_ARRIVAL_DATE) return "";
+      const date = SCHEDULE_ARRIVAL_DATE.split(" ")[0];
       return format(date, "dd-MMM-yyyy");
     },
   },
   {
     id: "promise date",
-    accessorKey: "promise_date",
+    accessorKey: "PROMISE_DATE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Promise Date" />
     ),
     cell: ({
       row: {
-        original: { promise_date },
+        original: { PROMISE_DATE },
       },
     }) => {
-      if (!promise_date) return "";
-      const date = promise_date.split(" ")[0];
+      if (!PROMISE_DATE) return "";
+      const date = PROMISE_DATE.split(" ")[0];
       return format(date, "dd-MMM-yyyy");
     },
   },
@@ -422,77 +422,77 @@ const columns: ColumnDef<z.infer<any>>[] = [
   },
   {
     id: "planning priority",
-    accessorKey: "planning_priority",
+    accessorKey: "PLANNING_PRIORITY",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Planning Priority" />
     ),
   },
   {
     id: "qty shipped",
-    accessorKey: "shipping_quantity",
+    accessorKey: "SHIPPING_QUANTITY",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Qty Shipped" />
     ),
   },
   {
     id: "ship set",
-    accessorKey: "ship_set_type",
+    accessorKey: "SHIP_SET_TYPE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Ship Set" />
     ),
   },
   {
     id: "arrival set",
-    accessorKey: "arrival_set_type",
+    accessorKey: "ARRIVAL_SET_TYPE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Arrival Set" />
     ),
   },
   {
     id: "fulfillment set",
-    accessorKey: "fulfillment_method_code",
+    accessorKey: "FULFILLMENT_METHOD_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Fulfillment Set" />
     ),
   },
   {
     id: "shipping method",
-    accessorKey: "shipping_method_code",
+    accessorKey: "SHIPPING_METHOD_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Shipping Method" />
     ),
   },
   {
     id: "shipping priority",
-    accessorKey: "shipment_priority_code",
+    accessorKey: "SHIPMENT_PRIORITY_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Shipping Priority" />
     ),
   },
   {
     id: "freight terms",
-    accessorKey: "freight_terms_code",
+    accessorKey: "FREIGHT_TERMS_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Freight Terms" />
     ),
   },
   {
     id: "shipping instructions",
-    accessorKey: "shipping_instructions",
+    accessorKey: "SHIPPING_INSTRUCTIONS",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Shipping Instructions" />
     ),
   },
   {
     id: "packing instructions",
-    accessorKey: "packing_instructions",
+    accessorKey: "PACKING_INSTRUCTIONS",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Packing Instructions" />
     ),
   },
   {
     id: "service reference type",
-    accessorKey: "service_reference_type_code",
+    accessorKey: "SERVICE_REFERENCE_TYPE_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Service Reference Type" />
     ),
@@ -516,7 +516,7 @@ const columns: ColumnDef<z.infer<any>>[] = [
   },
   {
     id: "service ref line number",
-    accessorKey: "service_reference_line_id",
+    accessorKey: "SERVICE_REFERENCE_LINE_ID",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Service Ref. Line Number" />
     ),
@@ -533,7 +533,7 @@ const columns: ColumnDef<z.infer<any>>[] = [
   },
   {
     id: "service ref option number",
-    accessorKey: "service_bill_option_code",
+    accessorKey: "SERVICE_BILL_OPTION_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
@@ -553,137 +553,137 @@ const columns: ColumnDef<z.infer<any>>[] = [
   },
   {
     id: "service ref system name",
-    accessorKey: "service_reference_system_id",
+    accessorKey: "SERVICE_REFERENCE_SYSTEM_ID",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Service Ref. System Name" />
     ),
   },
   {
     id: "service start date",
-    accessorKey: "service_start_date",
+    accessorKey: "SERVICE_START_DATE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Service Start Date" />
     ),
     cell: ({
       row: {
-        original: { service_start_date },
+        original: { SERVICE_START_DATE },
       },
     }) => {
-      if (!service_start_date) return "";
-      const date = service_start_date.split(" ")[0];
+      if (!SERVICE_START_DATE) return "";
+      const date = SERVICE_START_DATE.split(" ")[0];
       return format(date, "dd-MMM-yyyy");
     },
   },
   {
     id: "service end date",
-    accessorKey: "service_end_date",
+    accessorKey: "SERVICE_END_DATE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Service End Date" />
     ),
     cell: ({
       row: {
-        original: { service_end_date },
+        original: { SERVICE_END_DATE },
       },
     }) => {
-      if (!service_end_date) return "";
-      const date = service_end_date.split(" ")[0];
+      if (!SERVICE_END_DATE) return "";
+      const date = SERVICE_END_DATE.split(" ")[0];
       return format(date, "dd-MMM-yyyy");
     },
   },
   {
     id: "service duration",
-    accessorKey: "service_duration",
+    accessorKey: "SERVICE_DURATION",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Service Duration" />
     ),
   },
   {
     id: "service period",
-    accessorKey: "service_period",
+    accessorKey: "SERVICE_PERIOD",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Service Period" />
     ),
   },
   {
     id: "service number",
-    accessorKey: "service_number",
+    accessorKey: "SERVICE_NUMBER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Service Number" />
     ),
   },
   {
     id: "service txn reason",
-    accessorKey: "service_txn_reason_code",
+    accessorKey: "SERVICE_TXN_REASON_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Service Txn. Reason" />
     ),
   },
   {
     id: "service txn comments",
-    accessorKey: "service_txn_comments",
+    accessorKey: "SERVICE_TXN_COMMENTS",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Service Txn. Comments" />
     ),
   },
   {
     id: "document number",
-    accessorKey: "check_number",
+    accessorKey: "CHECK_NUMBER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Document Number" />
     ),
   },
   {
     id: "project number",
-    accessorKey: "project_number",
+    accessorKey: "PROJECT_NUMBER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Project Number" />
     ),
   },
   {
     id: "task number",
-    accessorKey: "task_number",
+    accessorKey: "TASK_NUMBER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Task Number" />
     ),
   },
   {
     id: "unit number",
-    accessorKey: "end_item_unit_number",
+    accessorKey: "END_ITEM_UNIT_NUMBER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Unit Number" />
     ),
   },
   {
     id: "customer job",
-    accessorKey: "customer_job",
+    accessorKey: "CUSTOMER_JOB",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Customer Job" />
     ),
   },
   {
     id: "production line",
-    accessorKey: "customer_production_line",
+    accessorKey: "CUSTOMER_PRODUCTION_LINE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Production Line" />
     ),
   },
   {
     id: "model serial number",
-    accessorKey: "cust_model_serial_number",
+    accessorKey: "CUST_MODEL_SERIAL_NUMBER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Model Serial Number" />
     ),
   },
   {
     id: "customer dock",
-    accessorKey: "customer_dock_code",
+    accessorKey: "CUSTOMER_DOCK_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Customer Dock" />
     ),
   },
   {
     id: "customer production sequence",
-    accessorKey: "cust_production_seq_num",
+    accessorKey: "CUST_PRODUCTION_SEQ_NUM",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
@@ -700,7 +700,7 @@ const columns: ColumnDef<z.infer<any>>[] = [
   },
   {
     id: "industry information",
-    accessorKey: "industry_context",
+    accessorKey: "INDUSTRY_CONTEXT",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Industry Information" />
     ),
@@ -717,7 +717,7 @@ const columns: ColumnDef<z.infer<any>>[] = [
   },
   {
     id: "rla schedule",
-    accessorKey: "rla_schedule_type_code",
+    accessorKey: "RLA_SCHEDULE_TYPE_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Rla Schedule" />
     ),

@@ -10,6 +10,7 @@ import {
 const defaultValues = {
   ORGANIZATION: "",
   REQUISITION_NUMBER: "",
+  PREPARER: "",
   FROM_DATE: "",
   TO_DATE: "",
 };

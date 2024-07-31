@@ -14,6 +14,8 @@ const getAssetsBySearch: any = async (
         ASSET_NUMBER: data.ASSET_NUMBER,
         FROM_DATE: data.FROM_DATE,
         TO_DATE: data.TO_DATE,
+        NEW_OR_USED: data.NEW_OR_USED,
+        PROPERTY_TYPE: data.PROPERTY_TYPE,
       }
     );
     return response;

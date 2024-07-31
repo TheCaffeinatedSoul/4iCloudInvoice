@@ -25,13 +25,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     ),
     cell: ({
       row: {
-        original: { REQUEST_ID },
+        original: { SHIPMENT_HEADER_ID },
       },
     }) => {
       return (
         <Link
           style={{ textDecoration: "underline", color: "blue" }}
-          href={`/inventory/receipts/${REQUEST_ID}`}
+          href={`/inventory/receipts/${SHIPMENT_HEADER_ID}`}
         >
           <FaEye />
         </Link>

@@ -6,6 +6,7 @@ import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/receivables/receipts/receipt-history";
+import { format } from "date-fns";
 
 async function ReceiptDetails({
   params,
@@ -16,6 +17,16 @@ async function ReceiptDetails({
 
   const cardDetails = [
     { title: "Receipt Number", value: receiptDetails[0]?.receipt_number },
+    { title: "Organization", value: receiptDetails[0]?.org_name },
+    { title: "Bank Name", value: receiptDetails[0]?.bank_name },
+    {
+      title: "Amount",
+      value: receiptDetails[0]?.currency_code + " " + receiptDetails[0]?.amount,
+    },
+    {
+      title: "Date",
+      value: format(receiptDetails[0]?.receipt_date, "dd-MMM-yyyy"),
+    },
   ];
 
   return (

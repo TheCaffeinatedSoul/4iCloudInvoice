@@ -20,7 +20,32 @@ const Line = async ({
     params.LINE_NUMBER
   );
 
-  const cardHeader = [{ title: "Requisition Number" }];
+  const cardHeader = [
+    { title: "Organization", value: lineData?.data[0]?.org_name },
+    { title: "Supplier", value: lineData?.data[0]?.suggested_vendor_name },
+    { title: "Item", value: lineData?.data[0]?.item_description },
+    { title: "Type", value: lineData?.data[0]?.line_type },
+    {
+      title: "Amount",
+      value:
+        lineData?.data[0]?.currency_code + " " + lineData?.data[0]?.unit_price,
+    },
+    {
+      title: "Preparer",
+      value: lineData?.data[0]?.to_person_name,
+    },
+    {
+      title: "Buyer",
+      value: lineData?.data[0]?.suggested_buyer_name,
+    },
+    {
+      title: "Buyer Location",
+      value:
+        lineData?.data[0]?.deliver_to_location_address1 +
+        ", " +
+        lineData?.data[0]?.deliver_to_location_code,
+    },
+  ];
 
   return (
     <SelectedLayout

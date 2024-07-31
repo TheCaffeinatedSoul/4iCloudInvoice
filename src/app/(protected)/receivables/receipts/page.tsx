@@ -15,6 +15,7 @@ type ReceiptsProps = {
 
 const defaultValues = {
   ORGANIZATION: "",
+  RECEIPT_NUMBER: "",
   BANK_NAME: "",
   FROM_DATE: "",
   TO_DATE: "",

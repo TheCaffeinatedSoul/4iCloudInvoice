@@ -21,6 +21,18 @@ async function RequisitionDetails({
       title: "Requisition Number",
       value: requisitionData[0]?.requisition_number,
     },
+    {
+      title: "Preparer",
+      value: requisitionData[0]?.preparer_full_name,
+    },
+    {
+      title: "Organization",
+      value: requisitionData[0]?.organization_name,
+    },
+    {
+      title: "Status",
+      value: requisitionData[0]?.authorization_status,
+    },
   ];
 
   return (

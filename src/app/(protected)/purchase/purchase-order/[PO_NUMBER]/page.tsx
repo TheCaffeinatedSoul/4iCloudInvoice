@@ -5,6 +5,7 @@ import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/purchase/purchase-order/lines";
+import { format } from "date-fns";
 
 async function PODetails({
   params,
@@ -16,7 +17,37 @@ async function PODetails({
   const decodedPONumber = decodeURIComponent(params.PO_NUMBER);
   const poData = await getDetailsByPONumber(decodedPONumber);
 
-  const headerCard = [{ title: "PO Number", value: poData[0]?.po_number }];
+  const headerCard = [
+    { title: "Organization", value: poData[0]?.org_name },
+    { title: "Agent", value: poData[0]?.agent_name },
+    { title: "PO Number", value: poData[0]?.po_number },
+    { title: "Supplier", value: poData[0]?.vendor_name },
+    {
+      title: "Supplier Location",
+      value:
+        poData[0]?.vendor_address1 +
+        ", " +
+        poData[0]?.city +
+        ", " +
+        poData[0]?.state,
+    },
+    {
+      title: "Buyer Location",
+      value:
+        poData[0]?.bill_to_location_address1 +
+        ", " +
+        poData[0]?.bill_to_location_region_1 +
+        ", " +
+        poData[0]?.bill_to_location_town_or_city +
+        " - " +
+        poData[0]?.bill_to_location_postal_code,
+    },
+    { title: "Status", value: poData[0]?.authorization_status },
+    {
+      title: "Date",
+      value: format(poData[0]?.submit_date?.split(" ")[0], "dd-MMM-yyyy"),
+    },
+  ];
 
   return (
     <SelectedLayout

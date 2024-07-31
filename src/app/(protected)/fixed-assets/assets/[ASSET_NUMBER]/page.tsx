@@ -17,6 +17,26 @@ async function AssetDetails({ params }: { params: { ASSET_NUMBER: string } }) {
   const assetDetails = await getAssetDetailsByAssetId(assetid);
   const headerCard = [
     { title: "Asset Number", value: assetDetails[0]?.asset_number },
+    {
+      title: "Category",
+      value: assetDetails[0]?.asset_category_description,
+    },
+    {
+      title: "Asset Type",
+      value: assetDetails[0]?.asset_type_meaning,
+    },
+    {
+      title: "Property Type",
+      value: assetDetails[0]?.property_type_meaning,
+    },
+    {
+      title: "New / Used",
+      value: assetDetails[0]?.newuse_meaning,
+    },
+    {
+      title: "Owned / Leased",
+      value: assetDetails[0]?.ownlease_meaning,
+    },
   ];
 
   return (

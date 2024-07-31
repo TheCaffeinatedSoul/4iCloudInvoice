@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ColumnDef, VisibilityState } from "@tanstack/react-table";
 import { format } from "date-fns";
 import Link from "next/link";
+import { FaEye } from "react-icons/fa";
 import { z } from "zod";
 
 export const initialVisibilityState: VisibilityState = {};
@@ -18,108 +19,128 @@ const columns: ColumnDef<z.infer<any>>[] = [
     },
   },
   {
+    id: "view",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="View" />
+    ),
+    cell: ({
+      row: {
+        original: { HEADER_ID },
+      },
+    }) => {
+      return (
+        <Link
+          style={{ textDecoration: "underline", color: "blue" }}
+          href={`/order-management/sales-orders/${HEADER_ID}`}
+        >
+          <FaEye />
+        </Link>
+      );
+    },
+  },
+  {
     id: "customer",
-    accessorKey: "end_customer_name",
+    accessorKey: "END_CUSTOMER_NAME",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Customer" />
     ),
   },
   {
     id: "customer number",
-    accessorKey: "end_customer_number",
+    accessorKey: "END_CUSTOMER_NUMBER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Customer Number" />
     ),
   },
   {
     id: "customer PO",
-    accessorKey: "cust_po_number",
+    accessorKey: "CUST_PO_NUMBER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Customer PO" />
     ),
   },
   {
     id: "customer contact",
-    accessorKey: "sold_to_contact",
+    accessorKey: "SOLD_TO_CONTACT",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Customer Contact" />
     ),
   },
   {
     id: "blanket number",
-    accessorKey: "blanket_number",
+    accessorKey: "BLANKET_NUMBER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Blanket Number" />
     ),
   },
   {
     id: "ship to location",
-    accessorKey: "ship_to_location",
+    accessorKey: "SHIP_TO_LOCATION",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Ship To Location" />
     ),
   },
   {
     id: "bill to location",
-    accessorKey: "invoice_to_location",
+    accessorKey: "INVOICE_TO_LOCATION",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Bill To Location" />
     ),
   },
   {
     id: "order number",
-    accessorKey: "order_number",
+    accessorKey: "ORDER_NUMBER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Order Number" />
     ),
   },
   {
     id: "order type",
-    accessorKey: "order_type_name",
+    accessorKey: "ORDER_TYPE_NAME",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Order Type" />
     ),
   },
   {
     id: "ordered date",
-    accessorKey: "ordered_date",
+    accessorKey: "ORDERED_DATE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Ordered Date" />
     ),
     cell: ({
       row: {
-        original: { ordered_date },
+        original: { ORDERED_DATE },
       },
     }) => {
-      if (!ordered_date) return "";
-      const date = ordered_date.split(" ")[0];
+      if (!ORDERED_DATE) return "";
+      const date = ORDERED_DATE.split(" ")[0];
       return format(date, "dd-MMM-yyyy");
     },
   },
   {
     id: "price list",
-    accessorKey: "price_list_name",
+    accessorKey: "PRICE_LIST_NAME",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Price List" />
     ),
   },
   {
     id: "salesperson",
-    accessorKey: "salesrep_name",
+    accessorKey: "SALESREP_NAME",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Salesperson" />
     ),
   },
   {
     id: "status",
-    accessorKey: "flow_status_code",
+    accessorKey: "FLOW_STATUS_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Status" />
     ),
   },
   {
     id: "currency",
-    accessorKey: "transactional_curr_code",
+    accessorKey: "TRANSACTIONAL_CURR_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Currency" />
     ),
@@ -154,49 +175,49 @@ const columns: ColumnDef<z.infer<any>>[] = [
   },
   {
     id: "payment terms",
-    accessorKey: "payment_term_id",
+    accessorKey: "PAYMENT_TERM_ID",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Payment Terms" />
     ),
   },
   {
     id: "warehouse",
-    accessorKey: "organization_code",
+    accessorKey: "ORGANIZATION_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Warehouse" />
     ),
   },
   {
     id: "line set",
-    accessorKey: "line_set",
+    accessorKey: "LINE_SET",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Line Set" />
     ),
   },
   {
     id: "fob",
-    accessorKey: "fob_point_code",
+    accessorKey: "FOB_POINT_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Fob" />
     ),
   },
   {
     id: "shipping instructions",
-    accessorKey: "shipping_instructions",
+    accessorKey: "SHIPPING_INSTRUCTIONS",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Shipping Instructions" />
     ),
   },
   {
     id: "tax handling",
-    accessorKey: "tax_exempt_flag",
+    accessorKey: "TAX_EXEMPT_FLAG",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Tax Handling" />
     ),
   },
   {
     id: "exempt reason",
-    accessorKey: "tax_exempt_reason_code",
+    accessorKey: "TAX_EXEMPT_REASON_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Exempt Reason" />
     ),
@@ -210,98 +231,98 @@ const columns: ColumnDef<z.infer<any>>[] = [
   },
   {
     id: "credit card type",
-    accessorKey: "credit_card_code",
+    accessorKey: "CREDIT_CARD_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Credit Card Type" />
     ),
   },
   {
     id: "card holder",
-    accessorKey: "credit_card_holder_name",
+    accessorKey: "CREDIT_CARD_HOLDER_NAME",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Card Holders" />
     ),
   },
   {
     id: "approval code",
-    accessorKey: "credit_card_approval_code",
+    accessorKey: "CREDIT_CARD_APPROVAL_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Approval Code" />
     ),
   },
   {
     id: "order source",
-    accessorKey: "agreement_name",
+    accessorKey: "AGREEMENT_NAME",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Order Source" />
     ),
   },
   {
     id: "sales channel",
-    accessorKey: "sales_channel_code",
+    accessorKey: "SALES_CHANNEL_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Sales Channel" />
     ),
   },
   {
     id: "shipping method",
-    accessorKey: "shipping_method_code",
+    accessorKey: "SHIPPING_METHOD_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Shipping Method" />
     ),
   },
   {
     id: "freight terms",
-    accessorKey: "freight_terms_code",
+    accessorKey: "FREIGHT_TERMS_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Freight Terms" />
     ),
   },
   {
     id: "shipment priority",
-    accessorKey: "shipment_priority_code",
+    accessorKey: "SHIPMENT_PRIORITY_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Shipment Priority" />
     ),
   },
   {
     id: "packing instructions",
-    accessorKey: "packing_instructions",
+    accessorKey: "PACKING_INSTRUCTIONS",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Packing Instructions" />
     ),
   },
   {
     id: "tax exempt number",
-    accessorKey: "tax_exempt_number",
+    accessorKey: "TAX_EXEMPT_NUMBER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Tax Exempt Number" />
     ),
   },
   {
     id: "payment type",
-    accessorKey: "payment_type_code",
+    accessorKey: "PAYMENT_TYPE_CODE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Payment Type" />
     ),
   },
   {
     id: "check number",
-    accessorKey: "check_number",
+    accessorKey: "CHECK_NUMBER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Check Number" />
     ),
   },
   {
     id: "credit card number",
-    accessorKey: "credit_card_number",
+    accessorKey: "CREDIT_CARD_NUMBER",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Credit Card Number" />
     ),
   },
   {
     id: "card expiration date",
-    accessorKey: "credit_card_expiration_date",
+    accessorKey: "CREDIT_CARD_EXPIRATION_DATE",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Card Expiration Date" />
     ),
@@ -315,7 +336,7 @@ const columns: ColumnDef<z.infer<any>>[] = [
   },
   {
     id: "order source reference",
-    accessorKey: "orig_sys_document_ref",
+    accessorKey: "ORIG_SYS_DOCUMENT_REF",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Order Source Reference" />
     ),

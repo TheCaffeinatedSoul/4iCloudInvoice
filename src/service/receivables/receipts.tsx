@@ -14,6 +14,7 @@ const getReceiptsBySearch: any = async (
         BANK_NAME: data.BANK_NAME,
         FROM_DATE: data.FROM_DATE,
         TO_DATE: data.TO_DATE,
+        RECEIPT_NUMBER: data.RECEIPT_NUMBER,
       }
     );
     return response;

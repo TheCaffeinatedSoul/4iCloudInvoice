@@ -10,6 +10,7 @@ import {
 const defaultValues = {
   ORGANIZATION: "",
   ASSET_NUMBER: "",
+  PROPERTY_TYPE: "",
   FROM_DATE: "",
   TO_DATE: "",
 };

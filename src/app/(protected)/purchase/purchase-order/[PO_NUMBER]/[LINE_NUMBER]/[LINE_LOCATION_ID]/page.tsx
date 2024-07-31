@@ -6,6 +6,7 @@ import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/purchase/purchase-order/distributions";
+import { format } from "date-fns";
 
 const LineLocation = async ({
   params,
@@ -16,7 +17,27 @@ const LineLocation = async ({
     params.PO_NUMBER,
     params.LINE_LOCATION_ID
   );
-  const cardHeader = [{ title: "Line number", value: 1 }];
+  const cardHeader = [
+    { title: "Organization", value: lineLocationData[0]?.org_name },
+    { title: "Line Number", value: lineLocationData[0]?.po_line_num },
+    {
+      title: "Match Approval Level",
+      value: lineLocationData[0]?.Match_approval_level,
+    },
+    {
+      title: "Buyer Address",
+      value:
+        lineLocationData[0]?.ship_to_location_address1 +
+        ", " +
+        lineLocationData[0]?.ship_to_Region_1 +
+        ", " +
+        lineLocationData[0]?.ship_to_town_or_city,
+    },
+    {
+      title: "Date",
+      value: format(lineLocationData[0]?.need_by_date, "dd-MMM-yyyy"),
+    },
+  ];
   return (
     <SelectedLayout
       title="Line Location"
@@ -27,7 +48,10 @@ const LineLocation = async ({
         {lineLocationData ? (
           <DataTable
             title="Distributions"
-            data={{ data: lineLocationData, pageCount: 1 }}
+            data={{
+              data: lineLocationData[0]?.po_distributions_all,
+              pageCount: 1,
+            }}
             columns={columns}
             initialVisibilityState={initialVisibilityState}
           />

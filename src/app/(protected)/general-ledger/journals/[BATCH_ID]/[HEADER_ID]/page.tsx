@@ -6,6 +6,7 @@ import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/general-ledger/journals/lines";
+import { format } from "date-fns";
 
 const Line = async ({
   params,
@@ -19,6 +20,20 @@ const Line = async ({
 
   const cardHeader = [
     { title: "Batch Name", value: lineData.data[0].je_batch_name },
+    { title: "Journal", value: lineData.data[0].je_header_name },
+    {
+      title: "Journal Description",
+      value: lineData.data[0].je_header_description,
+    },
+    { title: "Ledger Name", value: lineData.data[0].ledger_short_name },
+    { title: "Source", value: lineData.data[0].je_source },
+    { title: "Category", value: lineData.data[0].je_category },
+    { title: "Posting Status", value: lineData.data[0].status_meaning },
+    { title: "Period", value: lineData.data[0].period_name },
+    {
+      title: "Posted Date",
+      value: format(lineData.data[0].posted_date.split(" ")[0], "dd-mm-yyyy"),
+    },
   ];
   return (
     <SelectedLayout

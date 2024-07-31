@@ -20,7 +20,10 @@ const Line = async ({
     params.LINE_NUMBER
   );
   const cardHeader = [
-    { title: "Transaction number", value: lineData.data[0]?.trx_number },
+    { title: "Transaction Number", value: lineData.data[0]?.trx_number },
+    { title: "Organization", value: lineData.data[0]?.operating_unit },
+    { title: "Description", value: lineData.data[0]?.description },
+    { title: "Amount", value: lineData.data[0]?.revenue_amount },
   ];
 
   return (

@@ -54,6 +54,7 @@ type searchPayload = {
   ORGANIZATION?: string;
   INVOICE_NUMBER?: string;
   INVOICE_TYPE?: string;
+  INVOICE_CLASS?: string;
   CHECK_NUMBER?: string;
   SUPPLIER_NUMBER?: string;
   SUPPLIER_NAME?: string;
@@ -67,6 +68,9 @@ type searchPayload = {
   BANK_NAME?: string;
   ASSET_NUMBER?: string;
   RECEIPT_NUMBER?: string;
+  NEW_OR_USED?: string;
+  PROPERTY_TYPE?: string;
+  PREPARER?: string;
 };
 
 export type {

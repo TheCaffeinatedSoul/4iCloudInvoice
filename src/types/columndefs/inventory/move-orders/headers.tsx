@@ -1,6 +1,5 @@
 "use client";
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header";
-import { Textarea } from "@/components/ui/textarea";
 import { ColumnDef, VisibilityState } from "@tanstack/react-table";
 import { format } from "date-fns";
 import Link from "next/link";
@@ -31,7 +30,7 @@ const columns: ColumnDef<z.infer<any>>[] = [
       return (
         <Link
           style={{ textDecoration: "underline", color: "blue" }}
-          href={`/fixed-assets/assets/${header_id}`}
+          href={`/inventory/move-orders/${header_id}`}
         >
           <FaEye />
         </Link>
@@ -39,10 +38,10 @@ const columns: ColumnDef<z.infer<any>>[] = [
     },
   },
   {
-    id: "number",
+    id: "receipt number",
     accessorKey: "request_number",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Number" />
+      <DataTableColumnHeader column={column} title="Receipt Number" />
     ),
   },
   {

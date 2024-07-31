@@ -2,11 +2,15 @@ import SelectedLayout from "@/components/layouts/selected-layout";
 import { Card } from "@/components/ui/card";
 import { DataTable } from "@/components/ui/data-table";
 import { serverSideSearchParams } from "@/schema/serverside-pagination";
-import { getDepreciationDetails } from "@/service/fixed-assets/assets";
+import {
+  getAssetDetailsByAssetId,
+  getDepreciationDetails,
+} from "@/service/fixed-assets/assets";
 import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/fixed-assets/assets/depreciations";
+import { format } from "date-fns";
 import { z } from "zod";
 
 async function Depreciations({
@@ -23,7 +27,24 @@ async function Depreciations({
     searchParams.page
   );
 
-  const cardHeader = [{ title: "Asset number", value: params.ASSET_NUMBER }];
+  const cardHeader = [
+    {
+      title: "Asset Number",
+      value: depreciationDetails?.data[0]?.asset_number,
+    },
+    {
+      title: "Description",
+      value: depreciationDetails?.data[0]?.description,
+    },
+    {
+      title: "Cost",
+      value: depreciationDetails?.data[0]?.cost,
+    },
+    {
+      title: "Date",
+      value: format(depreciationDetails?.data[0]?.prorate_date, "dd-MMM-yyyy"),
+    },
+  ];
 
   return (
     <SelectedLayout
@@ -35,7 +56,10 @@ async function Depreciations({
         {depreciationDetails ? (
           <DataTable
             title="Depreciation Details"
-            data={depreciationDetails}
+            data={{
+              data: depreciationDetails?.data[0]?.fa_financial_inquiry_deprn_v,
+              pageCount: 1,
+            }}
             columns={columns}
             initialVisibilityState={initialVisibilityState}
           />
