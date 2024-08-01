@@ -72,6 +72,9 @@ type searchPayload = {
   PROPERTY_TYPE?: string;
   PREPARER?: string;
   ITEM?: string;
+  SALESPERSON?: string;
+  SOURCE?: string;
+  STATUS?: string;
 };
 
 export type {

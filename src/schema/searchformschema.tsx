@@ -20,6 +20,9 @@ const searchSchema = z.object({
   PROPERTY_TYPE: z.string().optional(),
   PREPARER: z.string().optional(),
   ITEM: z.string().optional(),
+  SALESPERSON: z.string().optional(),
+  SOURCE: z.string().optional(),
+  STATUS: z.string().optional(),
 });
 
 export { searchSchema };

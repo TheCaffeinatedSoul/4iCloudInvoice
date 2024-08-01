@@ -252,7 +252,7 @@ const columns: ColumnDef<z.infer<any>>[] = [
   },
   {
     id: "order source",
-    accessorKey: "AGREEMENT_NAME",
+    accessorKey: "ORDER_SOURCE_DESCRIPTION",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Order Source" />
     ),

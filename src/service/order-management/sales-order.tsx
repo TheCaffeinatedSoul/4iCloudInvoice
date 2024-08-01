@@ -11,6 +11,8 @@ const getSalesOrderBySearch = async (
       `/ordermanagement/salesorder/getsalesorderbysearch?limit=${limit}&page=${page}`,
       {
         ORGANIZATION: data.ORGANIZATION,
+        SALESPERSON: data.SALESPERSON,
+        SOURCE: data.SOURCE,
         FROM_DATE: data.FROM_DATE,
         TO_DATE: data.TO_DATE,
       }
