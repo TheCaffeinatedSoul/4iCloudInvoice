@@ -14,7 +14,7 @@ import { SheetMenu } from "./sheet-menu";
 
 const Navbar = () => {
   return (
-    <div className="fixed w-full z-10 flex justify-between items-center p-2 bg-[#32012F]">
+    <div className="fixed w-full z-10 flex justify-between items-center p-2 bg-[#6482AD] backdrop-blur-xl">
       <SheetMenu />
       <Image src={logo} width={"50"} alt="4i logo" />
       <DropdownMenu>

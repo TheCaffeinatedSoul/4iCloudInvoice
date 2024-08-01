@@ -24,7 +24,7 @@ export function SheetMenu() {
             src={logo}
             width={"50"}
             alt="4i logo"
-            className="bg-[#32012F] rounded"
+            className="bg-[#6482AD] rounded"
           />
         </SheetHeader>
         <Menu isOpen />
