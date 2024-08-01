@@ -11,6 +11,7 @@ const getMtlTrxBySearch = async (
       `/inventory/mtltrx/getmtltrxbysearch?limit=${limit}&page=${page}`,
       {
         ORGANIZATION: data.ORGANIZATION,
+        ITEM: data.ITEM,
         FROM_DATE: data.FROM_DATE,
         TO_DATE: data.TO_DATE,
       }

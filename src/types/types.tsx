@@ -71,6 +71,7 @@ type searchPayload = {
   NEW_OR_USED?: string;
   PROPERTY_TYPE?: string;
   PREPARER?: string;
+  ITEM?: string;
 };
 
 export type {

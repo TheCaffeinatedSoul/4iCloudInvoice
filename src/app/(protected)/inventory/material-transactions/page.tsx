@@ -11,6 +11,7 @@ import { z } from "zod";
 
 const defaultValues: z.infer<typeof searchSchema> = {
   ORGANIZATION: "",
+  ITEM: "",
   FROM_DATE: "",
   TO_DATE: "",
 };

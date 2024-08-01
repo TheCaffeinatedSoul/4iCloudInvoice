@@ -19,6 +19,7 @@ const searchSchema = z.object({
   RECEIPT_NUMBER: z.string().optional(),
   PROPERTY_TYPE: z.string().optional(),
   PREPARER: z.string().optional(),
+  ITEM: z.string().optional(),
 });
 
 export { searchSchema };

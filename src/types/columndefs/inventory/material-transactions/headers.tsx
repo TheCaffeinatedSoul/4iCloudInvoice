@@ -86,6 +86,13 @@ const columns: ColumnDef<z.infer<any>>[] = [
     ),
   },
   {
+    id: "description",
+    accessorKey: "item_description",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Description" />
+    ),
+  },
+  {
     id: "revision",
     accessorKey: "revision",
     header: ({ column }) => (
