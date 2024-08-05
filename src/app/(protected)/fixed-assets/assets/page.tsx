@@ -6,8 +6,10 @@ import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/fixed-assets/assets/assets";
+import { T_SearchParamsProps } from "@/types/types";
+import { z } from "zod";
 
-const defaultValues = {
+const defaultValues : z.infer<typeof searchSchema> = {
   ORGANIZATION: "",
   ASSET_NUMBER: "",
   PROPERTY_TYPE: "",
@@ -15,7 +17,7 @@ const defaultValues = {
   TO_DATE: "",
 };
 
-const Assets = ({ searchParams }: any) => {
+const Assets = ({ searchParams }: T_SearchParamsProps) => {
   return (
     <SearchableLayout
       title="Assets"

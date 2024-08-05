@@ -24,7 +24,10 @@ async function JournalDetails({ params }: { params: { BATCH_ID: string } }) {
     },
     {
       title: "Effective date",
-      value: format(journalData[0]?.effective_date.split(" ")[0], "dd-mm-yyyy"),
+      value: format(
+        journalData[0]?.effective_date.split(" ")[0],
+        "dd-MMM-yyyy"
+      ),
     },
     {
       title: "Period Set Name",

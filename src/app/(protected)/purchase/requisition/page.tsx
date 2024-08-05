@@ -6,15 +6,17 @@ import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/purchase/requisition/headers";
+import { T_SearchParamsProps } from "@/types/types";
+import { z } from "zod";
 
-const defaultValues = {
+const defaultValues: z.infer<typeof searchSchema> = {
   ORGANIZATION: "",
   REQUISITION_NUMBER: "",
   PREPARER: "",
   FROM_DATE: "",
   TO_DATE: "",
 };
-const Requisition = ({ searchParams }: any) => {
+const Requisition = ({ searchParams }: T_SearchParamsProps) => {
   return (
     <SearchableLayout
       title="Requisitions"

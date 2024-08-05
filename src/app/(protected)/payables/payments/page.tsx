@@ -8,21 +8,18 @@ import { z } from "zod";
 import { searchSchema } from "@/schema/searchformschema";
 import SearchableLayout from "@/components/layouts/searchable-layout";
 import { getChecksBySearch } from "@/service/payables/payments";
-
-type PaymentProps = {
-  searchParams: z.infer<typeof serverSideSearchParams>;
-};
+import { T_SearchParamsProps } from "@/types/types";
 
 const defaultValues: z.infer<typeof searchSchema> = {
-  ORGANIZATION:'',
-  DOCUMENT_NUMBER:'',
-  SUPPLIER_NUMBER:'',
-  SUPPLIER_NAME:'',
-  FROM_DATE:'',
-  TO_DATE:''
+  ORGANIZATION: "",
+  DOCUMENT_NUMBER: "",
+  SUPPLIER_NUMBER: "",
+  SUPPLIER_NAME: "",
+  FROM_DATE: "",
+  TO_DATE: "",
 };
 
-const Payments = ({ searchParams }: PaymentProps) => {
+const Payments = ({ searchParams }: T_SearchParamsProps) => {
   return (
     <SearchableLayout
       title="Payments"

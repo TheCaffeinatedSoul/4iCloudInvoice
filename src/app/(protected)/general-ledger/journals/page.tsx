@@ -7,13 +7,10 @@ import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/general-ledger/journals/batches";
+import { T_SearchParamsProps } from "@/types/types";
 import { z } from "zod";
 
-type JournalProps = {
-  searchParams: z.infer<typeof serverSideSearchParams>;
-};
-
-const defaultValues = {
+const defaultValues: z.infer<typeof searchSchema> = {
   BATCH_NAME: "",
   SOURCE: "",
   LEDGER: "",
@@ -22,7 +19,7 @@ const defaultValues = {
   TO_DATE: "",
   PERIOD_NAME: "",
 };
-const Journals = ({ searchParams }: JournalProps) => {
+const Journals = ({ searchParams }: T_SearchParamsProps) => {
   return (
     <SearchableLayout
       title="Journals"

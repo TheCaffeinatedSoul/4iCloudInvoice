@@ -6,8 +6,10 @@ import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/receivables/invoices/invoice-headers";
+import { T_SearchParamsProps } from "@/types/types";
+import { z } from "zod";
 
-const defaultValues = {
+const defaultValues: z.infer<typeof searchSchema> = {
   ORGANIZATION: "",
   INVOICE_NUMBER: "",
   INVOICE_CLASS: "",
@@ -16,7 +18,7 @@ const defaultValues = {
   TO_DATE: "",
 };
 
-const Invoices = ({ searchParams }: any) => {
+const Invoices = ({ searchParams }: T_SearchParamsProps) => {
   return (
     <SearchableLayout
       title="Invoices"

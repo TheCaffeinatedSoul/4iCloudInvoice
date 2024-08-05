@@ -18,6 +18,7 @@ import {
   TrendingDown,
   Package2,
   Warehouse,
+  Home,
 } from "lucide-react";
 
 type Submenu = {
@@ -42,6 +43,18 @@ type Group = {
 
 export function getMenuList(pathname: string): Group[] {
   return [
+    {
+      groupLabel: "Home",
+      menus: [
+        {
+          href: "/home",
+          label: "Home",
+          active: pathname === "/home",
+          icon: Home,
+          submenus: [],
+        },
+      ],
+    },
     {
       groupLabel: "Contents",
       menus: [

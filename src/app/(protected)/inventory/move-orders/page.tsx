@@ -7,8 +7,9 @@ import {
   initialVisibilityState,
 } from "@/types/columndefs/inventory/move-orders/headers";
 import { T_SearchParamsProps } from "@/types/types";
+import { z } from "zod";
 
-const defaultValues = {
+const defaultValues: z.infer<typeof searchSchema> = {
   ORGANIZATION: "",
   RECEIPT_NUMBER: "",
   FROM_DATE: "",

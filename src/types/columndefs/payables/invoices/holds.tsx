@@ -18,7 +18,7 @@ export const initialVisibilityState: VisibilityState = {
 
 const columns: ColumnDef<z.infer<any>>[] = [
   {
-    id: "#",
+    id: "S.No",
     header: "S.No",
     cell: ({ row: { index }, table: { getState } }) => {
       const {

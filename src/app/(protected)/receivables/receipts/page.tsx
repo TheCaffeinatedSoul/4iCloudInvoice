@@ -7,13 +7,10 @@ import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/receivables/receipts/receipt-header";
+import { T_SearchParamsProps } from "@/types/types";
 import { z } from "zod";
 
-type ReceiptsProps = {
-  searchParams: z.infer<typeof serverSideSearchParams>;
-};
-
-const defaultValues = {
+const defaultValues: z.infer<typeof searchSchema> = {
   ORGANIZATION: "",
   RECEIPT_NUMBER: "",
   BANK_NAME: "",
@@ -21,7 +18,7 @@ const defaultValues = {
   TO_DATE: "",
 };
 
-const Receipts = ({ searchParams }: ReceiptsProps) => {
+const Receipts = ({ searchParams }: T_SearchParamsProps) => {
   return (
     <SearchableLayout
       title="Receipts"

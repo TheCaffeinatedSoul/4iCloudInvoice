@@ -6,6 +6,7 @@ import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/order-management/sales-orders/headers";
+import { T_SearchParamsProps } from "@/types/types";
 import { z } from "zod";
 
 const defaultValues: z.infer<typeof searchSchema> = {
@@ -16,7 +17,7 @@ const defaultValues: z.infer<typeof searchSchema> = {
   TO_DATE: "",
 };
 
-const Orders = ({ searchParams }: any) => {
+const Orders = ({ searchParams }: T_SearchParamsProps) => {
   return (
     <SearchableLayout
       title="Sales Orders"

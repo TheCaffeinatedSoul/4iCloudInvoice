@@ -8,10 +8,7 @@ import { serverSideSearchParams } from "@/schema/serverside-pagination";
 import { z } from "zod";
 import { searchSchema } from "@/schema/searchformschema";
 import SearchableLayout from "@/components/layouts/searchable-layout";
-
-type InvoiceProps = {
-  searchParams: z.infer<typeof serverSideSearchParams>;
-};
+import { T_SearchParamsProps } from "@/types/types";
 
 const defaultValues: z.infer<typeof searchSchema> = {
   INVOICE_NUMBER: "",
@@ -23,7 +20,7 @@ const defaultValues: z.infer<typeof searchSchema> = {
   ORGANIZATION: "",
 };
 
-const Invoices = ({ searchParams }: InvoiceProps) => {
+const Invoices = ({ searchParams }: T_SearchParamsProps) => {
   return (
     <SearchableLayout
       title="Invoices"

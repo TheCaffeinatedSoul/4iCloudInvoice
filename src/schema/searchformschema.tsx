@@ -23,6 +23,11 @@ const searchSchema = z.object({
   SALESPERSON: z.string().optional(),
   SOURCE: z.string().optional(),
   STATUS: z.string().optional(),
+  BATCH_NAME: z.string().optional(),
+  LEDGER: z.string().optional(),
+  JOURNAL_NAME: z.string().optional(),
+  PERIOD_NAME: z.string().optional(),
+  INVOICE_CLASS: z.string().optional(),
 });
 
 export { searchSchema };

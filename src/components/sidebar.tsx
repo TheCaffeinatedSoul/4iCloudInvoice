@@ -8,7 +8,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`hidden md:flex flex-col bg-[#E2DAD6] bg-hero-topography-blue-dark transition-all duration-300 ease-in-out ${
+      className={`hidden md:flex flex-col bg-[#E2DAD6] transition-all duration-300 ease-in-out ${
         collapsed ? "w-16" : "w-80"
       }`}
     >

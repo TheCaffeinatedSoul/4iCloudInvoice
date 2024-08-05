@@ -32,7 +32,7 @@ const Line = async ({
     { title: "Period", value: lineData.data[0].period_name },
     {
       title: "Posted Date",
-      value: format(lineData.data[0].posted_date.split(" ")[0], "dd-mm-yyyy"),
+      value: format(lineData.data[0].posted_date.split(" ")[0], "dd-MMM-yyyy"),
     },
   ];
   return (

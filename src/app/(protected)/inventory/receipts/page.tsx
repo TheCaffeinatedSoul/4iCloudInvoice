@@ -7,9 +7,10 @@ import {
   columns,
   initialVisibilityState,
 } from "@/types/columndefs/inventory/receipts/headers";
+import { T_SearchParamsProps } from "@/types/types";
 import { z } from "zod";
 
-const defaultValues = {
+const defaultValues: z.infer<typeof searchSchema> = {
   ORGANIZATION: "",
   RECEIPT_NUMBER: "",
   SUPPLIER_NAME: "",
@@ -18,11 +19,7 @@ const defaultValues = {
   TO_DATE: "",
 };
 
-const Receipts = ({
-  searchParams,
-}: {
-  searchParams: z.infer<typeof serverSideSearchParams>;
-}) => {
+const Receipts = ({ searchParams }: T_SearchParamsProps) => {
   return (
     <SearchableLayout
       title="Receipts"

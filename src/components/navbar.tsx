@@ -29,7 +29,7 @@ const Navbar = () => {
           {/* </Card> */}
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem className="flex justify-between">
+          <DropdownMenuItem className="flex justify-evenly">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>U</AvatarFallback>
@@ -37,11 +37,7 @@ const Navbar = () => {
             <p className="text-sm">User</p>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="flex justify-between">
-            Settings
-            <IoSettingsOutline />
-          </DropdownMenuItem>
-          <DropdownMenuItem className="flex justify-between">
+          <DropdownMenuItem className="flex justify-evenly">
             Logout
             <FiLogOut />
           </DropdownMenuItem>
