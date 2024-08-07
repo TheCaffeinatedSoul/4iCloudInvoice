@@ -8,11 +8,14 @@ import {
   DropdownMenuSeparator,
 } from "./ui/dropdown-menu";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
-import { IoSettingsOutline } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 import { SheetMenu } from "./sheet-menu";
+import Link from "next/link";
+import { getCookie } from "cookies-next";
 
 const Navbar = () => {
+  const user = getCookie("NAME");
+
   return (
     <div className="fixed w-full z-10 flex justify-between items-center p-2 bg-[#6482AD] backdrop-blur-xl">
       <SheetMenu />
@@ -32,13 +35,13 @@ const Navbar = () => {
           <DropdownMenuItem className="flex justify-evenly">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>U</AvatarFallback>
+              <AvatarFallback>{user?.charAt(0)}</AvatarFallback>
             </Avatar>
-            <p className="text-sm">User</p>
+            <p className="text-sm">{user}</p>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="flex justify-evenly">
-            Logout
+            <Link href={"/login"}>Logout</Link>
             <FiLogOut />
           </DropdownMenuItem>
         </DropdownMenuContent>

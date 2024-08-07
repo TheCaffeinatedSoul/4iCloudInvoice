@@ -15,14 +15,9 @@ const defaultValues: z.infer<typeof loginSchema> = {
 const Login = () => {
   return (
     <div className="grid w-screen h-screen bg-[#F5EDED] align-middle justify-center md:items-center">
-      <div className="grid grid-cols-12 items-center md:flex-row p-4 gap-4">
+      <div className="grid grid-cols-12 items-center md:flex-row p-10 gap-4">
         <Card className="hidden md:flex col-span-12 md:col-span-8 content-center justify-center">
-          <Image
-            src={landing}
-            height={500}
-            alt="landing"
-            className="rounded-xl"
-          />
+          <Image src={landing} alt="landing" className="rounded-xl" />
         </Card>
         <Card className="flex flex-col h-fit md:h-full col-span-12 md:col-span-4 p-8 gap-4 justify-evenly">
           <div className="flex flex-col gap-2">

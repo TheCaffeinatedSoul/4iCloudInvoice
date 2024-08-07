@@ -47,7 +47,7 @@ const columns: ColumnDef<z.infer<any>>[] = [
     }) => {
       return (
         <Link
-          style={{ textDecoration: "underline", color: "blue" }}
+          style={{ textDecoration: "underline", color: "#6482AD" }}
           href={`/receivables/receipts/${cash_receipt_id}`}
         >
           <FaEye />

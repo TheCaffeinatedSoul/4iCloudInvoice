@@ -14,6 +14,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "./ui/button";
 import { BsKey } from "react-icons/bs";
+import { ImSpinner9 } from "react-icons/im";
+import { authenticate } from "@/lib/actions/login/actions";
+import { useFormState, useFormStatus } from "react-dom";
 
 interface LoginFormProps {
   defaultValues: z.infer<typeof loginSchema>;
@@ -25,20 +28,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ defaultValues }) => {
     defaultValues: defaultValues,
   });
 
-  const login = (data: z.infer<typeof loginSchema>) => {
-    console.log("Form data: ", data);
-  };
+  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
 
   return (
     <Form {...form}>
       <form
         autoComplete="off"
         className="grid grid-cols-1 gap-4"
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            form.handleSubmit(login)();
-          }
-        }}
+        action={dispatch}
       >
         {Object.keys(defaultValues).map((key) => (
           <FormField
@@ -47,7 +44,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ defaultValues }) => {
             name={key as "USERNAME" | "PASSWORD"}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>
+                <FormLabel className="text-[#6482AD]">
                   {key
                     .replace(/_/g, " ")
                     .split(" ")
@@ -65,6 +62,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ defaultValues }) => {
                       .replace(/_/g, " ")
                       .toLowerCase()}`}
                     type={key.includes("PASSWORD") ? "password" : "text"}
+                    required
                   />
                 </FormControl>
                 <FormMessage />
@@ -72,21 +70,40 @@ const LoginForm: React.FC<LoginFormProps> = ({ defaultValues }) => {
             )}
           ></FormField>
         ))}
+        <div className="flex w-full justify-center">
+          {errorMessage && (
+            <p className="text-red-500 text-sm">{errorMessage}</p>
+          )}
+        </div>
+        <LoginButton />
       </form>
-      <div className="flex justify-center pt-4">
-        <Button
-          variant={"default"}
-          className="flex w-full items-center gap-2"
-          onClick={() => {
-            form.handleSubmit(login)();
-          }}
-        >
-          <BsKey />
-          Login
-        </Button>
-      </div>
     </Form>
   );
 };
+
+function LoginButton() {
+  const { pending } = useFormStatus();
+
+  const handleClick = (event: any) => {
+    if (pending) {
+      event.preventDefault();
+    }
+  };
+
+  return (
+    <div className="flex justify-center pt-4">
+      <Button
+        variant={"default"}
+        className="flex w-full items-center gap-2"
+        type="submit"
+        onClick={handleClick}
+        disabled={pending}
+      >
+        {pending ? <ImSpinner9 className="animate-spin" /> : <BsKey />}
+        Login
+      </Button>
+    </div>
+  );
+}
 
 export default LoginForm;

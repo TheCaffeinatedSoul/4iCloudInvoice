@@ -1,6 +1,7 @@
 "use client";
 
 import Navbar from "@/components/navbar";
+import Providers from "@/components/nprogess-provider";
 import Sidebar from "@/components/sidebar";
 
 function ProtectedLayout({
@@ -13,7 +14,7 @@ function ProtectedLayout({
       <Navbar />
       <div className="flex bg-[#F5EDED] min-h-screen overflow-x-scroll pt-16">
         <Sidebar />
-        {children}
+        <Providers>{children}</Providers>
       </div>
     </div>
   );
